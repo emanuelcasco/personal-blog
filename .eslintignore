@@ -1,0 +1,19 @@
+# .estlintignore file## extensions
+*.*
+Dockerfile
+LICENSE
+!*.js
+!*.ts
+!*.tsx
+
+## same as in .gitignore
+/.next
+/.vscode
+/build
+/dist
+/public
+/node_modules
+/i18n/locales/**/*.missing.json
+/posts/**/*.missing.json
+
+

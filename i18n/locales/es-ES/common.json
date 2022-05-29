@@ -1,0 +1,11 @@
+{
+  "navigation": {
+    "home": "Inicio",
+    "blog": "Blog",
+    "me": "Sobre mi",
+    "back": "Atrás"
+  },
+  "blog": {
+    "readingTime": "min. de lectura"
+  }
+}

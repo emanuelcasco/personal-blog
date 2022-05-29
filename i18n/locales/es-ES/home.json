@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "title": "Inicio"
+  },
+  "introduction": {
+    "greeting": "Hola! 👋",
+    "name": "Soy Emanuel Casco",
+    "presentation": "<paragraph>Actualmente trabajo en <link1>Waterplan Inc.</link1> como Software Engineer.</paragraph> <paragraph>Escribo, de vez en cuando, sobre temas como frontend, backend, y demás. Si encontras algo de lo que lees interesante, ¡no dudes en compartirlo!</paragraph><paragraph>Si quieres ponerte en contacto conmigo puedes hacerlo a través de redes sociales (pero posiblemente mi <link2>email</link2> sea la mejor opción).</paragraph>"
+  }
+}

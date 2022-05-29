@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "title": "Home"
+  },
+  "introduction": {
+    "greeting": "Hey! 👋",
+    "name": "I'm Emanuel Casco",
+    "presentation": "<paragraph>Currently working on <link1>Waterplan Inc</link1> as Software Engineer.</paragraph> <paragraph>I write occasionally about topics like frontend, backend, and so more. If you find something interesting, please don't doubt to share it!</paragraph><paragraph>If you'd like to get in touch with me, you can do it by any of my social networks (but probably my <link2>email</link2> would be the better option).</paragraph>"
+  }
+}

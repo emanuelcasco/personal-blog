@@ -1,0 +1,11 @@
+{
+  "navigation": {
+    "home": "Home",
+    "blog": "Blog",
+    "me": "About Me",
+    "back": "Back"
+  },
+  "blog": {
+    "readingTime": "min. read"
+  }
+}
