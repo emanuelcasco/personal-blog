@@ -3,9 +3,9 @@ import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import PostBody from '@components/Posts/PostBody'
+import PostHeader from '@components/Posts/PostHeader'
 import StackContainer from '@components/UI/Containers/StackContainer'
 import Heading from '@components/UI/Heading'
-import PostHeader from '@components/Posts/PostHeader'
 import { Post } from '@entities'
 import { i18nApply, I18nPage, i18nPageContext } from '@i18n'
 import { markdownToHtml } from '@services/markdown.service'
@@ -37,6 +37,7 @@ const BlogPostPage: BlogPostPageStatic = ({ post }) => {
           <>
             <PostHeader post={post} />
             <PostBody content={post.content} />
+            {/* <PostAuthor post={post} /> */}
           </>
         )}
       </StackContainer>

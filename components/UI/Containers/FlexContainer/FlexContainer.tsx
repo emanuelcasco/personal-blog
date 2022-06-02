@@ -6,7 +6,7 @@ import styles from './FlexContainer.css'
 
 interface FlexContainerProps {
   children: ReactNode
-  tag?: 'div' | 'section' | 'ul' | 'article'
+  tag?: 'div' | 'section' | 'ul' | 'article' | 'aside'
   className?: string
 }
 
