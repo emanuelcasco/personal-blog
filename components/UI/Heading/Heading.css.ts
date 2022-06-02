@@ -13,8 +13,8 @@ const variants = styleVariants({
   h1: [
     base,
     {
-      ...tokens.fonts['3xl'],
-      marginBottom: tokens.space['2xl'],
+      ...tokens.fonts['2xl'],
+      marginBottom: tokens.space['xl'],
       letterSpacing: 1.4,
       fontWeight: 'bold',
     },
@@ -22,8 +22,8 @@ const variants = styleVariants({
   h2: [
     base,
     {
-      ...tokens.fonts['2xl'],
-      marginBottom: tokens.space.xl,
+      ...tokens.fonts['xl'],
+      marginBottom: tokens.space.lg,
       letterSpacing: 1.2,
       fontWeight: 500,
     },
@@ -31,8 +31,8 @@ const variants = styleVariants({
   h3: [
     base,
     {
-      ...tokens.fonts['md'],
-      marginBottom: tokens.space.md,
+      ...tokens.fonts['lg'],
+      marginBottom: tokens.space.sm,
       letterSpacing: 1.2,
       fontWeight: 'bold',
     },
@@ -40,7 +40,7 @@ const variants = styleVariants({
   h4: [
     base,
     {
-      ...tokens.fonts['sm'],
+      ...tokens.fonts['md'],
       marginBottom: tokens.space.sm,
       letterSpacing: 1.2,
       fontWeight: 'bold',
@@ -49,7 +49,7 @@ const variants = styleVariants({
   h5: [
     base,
     {
-      ...tokens.fonts.xs,
+      ...tokens.fonts.sm,
       marginBottom: tokens.space.xs,
       letterSpacing: 1.2,
       fontWeight: 'bold',

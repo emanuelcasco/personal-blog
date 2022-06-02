@@ -1,4 +1,5 @@
 import { composeStyles } from '@styles/theme'
+
 import styles from './Glitch.css'
 
 interface GlitchProps {

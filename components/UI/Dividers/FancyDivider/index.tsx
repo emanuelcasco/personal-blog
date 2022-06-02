@@ -1,2 +1,2 @@
-export * from "./FancyDivider";
-export { default } from "./FancyDivider";
+export * from './FancyDivider'
+export { default } from './FancyDivider'

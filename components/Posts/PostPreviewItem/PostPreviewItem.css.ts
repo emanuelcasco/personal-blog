@@ -13,13 +13,22 @@ const postPreview = style({
   transition: 'background-color .5s ease-in',
   ':hover': {
     cursor: 'pointer',
-    backgroundColor: tokens.colors.variants.background.light,
   },
+})
+
+globalStyle(`${postPreview}:hover h3`, {
+  fontWeight: 'bold',
+  color: tokens.colors.primary,
+})
+
+globalStyle(`${postPreview}:hover p`, {
+  fontWeight: 450,
 })
 
 const postPreview__content = style({
   display: 'flex',
   flexDirection: 'column',
+  paddingBottom: tokens.space.md,
 })
 
 const postPreview__date = style({

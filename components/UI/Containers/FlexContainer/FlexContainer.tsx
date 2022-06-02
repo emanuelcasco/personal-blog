@@ -1,6 +1,6 @@
+import React, { ReactNode, useMemo } from 'react'
+
 import { composeStyles } from '@styles/theme'
-import React from 'react'
-import { ReactNode, useMemo } from 'react'
 
 import styles from './FlexContainer.css'
 

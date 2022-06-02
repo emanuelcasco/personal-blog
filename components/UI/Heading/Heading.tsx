@@ -1,7 +1,8 @@
 import { ReactNode, CSSProperties } from 'react'
 
-import styles from './Heading.css'
 import { composeStyles } from '@styles/theme'
+
+import styles from './Heading.css'
 
 interface HeadingProps {
   type: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'

@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react'
-
 import Link from 'next/link'
 
 import styles from './SocialLinks.css'

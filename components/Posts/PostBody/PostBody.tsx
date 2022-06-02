@@ -1,4 +1,5 @@
 import { Post } from '@entities'
+
 import styles from './PostBody.css'
 
 type PostBodyProps = {

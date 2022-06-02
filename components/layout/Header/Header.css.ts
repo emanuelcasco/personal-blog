@@ -5,19 +5,22 @@ import { tokens, responsiveStyle } from '@styles/theme'
 const header = style({
   display: 'flex',
   flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'space-between',
   background: 'inherit',
-  gap: tokens.space.sm,
+  gap: tokens.space.lg,
   width: '100%',
   ...responsiveStyle({
     'for-mobile': {
       paddingInline: tokens.space.sm,
       paddingBlock: tokens.space.sm,
+      flexWrap: 'wrap',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
-    'for-tablet-portrait-up': {
+    'for-tablet-landscape-up': {
       paddingInline: tokens.space.lg,
       paddingBlock: tokens.space.lg,
+      alignItems: 'center',
+      justifyContent: 'space-between',
     },
   }),
 })
@@ -77,40 +80,6 @@ const brand__textRole = style({
   }),
 })
 
-const navbar = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
-  gap: tokens.space.md,
-  ...responsiveStyle({
-    'for-mobile': {
-      display: 'none',
-    },
-    'for-tablet-landscape-up': {
-      display: 'flex',
-    },
-  }),
-})
-
-const navbar__link = style({
-  textDecoration: 'none',
-  color: tokens.colors.neutral,
-  fontWeight: 300,
-  ':hover': {
-    textDecoration: 'underline',
-    fontWeight: 500,
-  },
-})
-
-const navbar__linkActive = style({
-  color: tokens.colors.primary,
-  fontWeight: 500,
-  textDecoration: 'underline',
-  ':hover': {
-    color: tokens.colors.variants.primary.light,
-  },
-})
-
 export default {
   header,
   brand,
@@ -118,7 +87,4 @@ export default {
   brand__text,
   brand__textName,
   brand__textRole,
-  navbar,
-  navbar__link,
-  navbar__linkActive,
 }

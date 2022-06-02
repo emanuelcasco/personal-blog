@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import React, { ChangeEvent } from 'react'
+import { ChangeEvent } from 'react'
 
 import styles from './LanguagePicker.css'
 

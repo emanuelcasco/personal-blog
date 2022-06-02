@@ -3,15 +3,13 @@ import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import PostBody from '@components/Posts/PostBody'
-import PostTimeData from '@components/Posts/PostTime'
-import PostImage from '@components/Posts/PostImage'
 import StackContainer from '@components/UI/Containers/StackContainer'
 import Heading from '@components/UI/Heading'
+import PostHeader from '@components/Posts/PostHeader'
 import { Post } from '@entities'
 import { i18nApply, I18nPage, i18nPageContext } from '@i18n'
 import { markdownToHtml } from '@services/markdown.service'
 import { getAllPosts, getPostBySlug } from '@services/posts.service'
-import BackButton from '@components/UI/BackButton'
 
 type BlogPostPageStatic = I18nPage<{
   locale: string
@@ -37,12 +35,7 @@ const BlogPostPage: BlogPostPageStatic = ({ post }) => {
           <Heading type="h1">Loading...</Heading>
         ) : (
           <>
-            <BackButton />
-            <PostTimeData date={post.date} readTime={post.readTime} />
-            <Heading type="h1" style={{ textAlign: 'center' }}>
-              {post.title}
-            </Heading>
-            <PostImage post={post} size={'large'} />
+            <PostHeader post={post} />
             <PostBody content={post.content} />
           </>
         )}
