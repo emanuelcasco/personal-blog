@@ -10,7 +10,7 @@ const PostBody = ({ content }: PostBodyProps) => {
   return (
     <section
       className={styles.postBody}
-      dangerouslySetInnerHTML={{ __html: content }}
+      dangerouslySetInnerHTML={{ __html: content.toString() }}
     />
   )
 }

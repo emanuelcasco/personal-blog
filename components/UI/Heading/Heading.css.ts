@@ -6,6 +6,7 @@ const base = style({
   color: tokens.colors.neutral,
   textDecoration: 'none',
   display: 'block',
+  textAlign: 'left',
   flex: 1,
 })
 

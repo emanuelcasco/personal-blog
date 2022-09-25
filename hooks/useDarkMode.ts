@@ -1,16 +1,20 @@
-import { useEffect, useState } from 'react'
-
 import useMediaQuery from '@hooks/useMediaQuery'
+import useLocalStorageState from '@hooks/useLocalStorage'
 
 function useDarkMode() {
   const systemPrefersDark = useMediaQuery('(prefers-color-scheme: dark)')
-  const [darkModeEnabled, setDarkModeEnabled] = useState(systemPrefersDark)
+  const state = useLocalStorageState<boolean>(
+    'is-dark-mode-enabled',
+    systemPrefersDark
+  )
 
-  useEffect(() => {
-    setDarkModeEnabled(systemPrefersDark)
-  }, [systemPrefersDark])
+  // const [darkModeEnabled, setDarkModeEnabled] = state
 
-  return [darkModeEnabled, setDarkModeEnabled]
+  // useEffect(() => {
+  //   setDarkModeEnabled(systemPrefersDark)
+  // }, [setDarkModeEnabled, systemPrefersDark])
+
+  return state
 }
 
 export default useDarkMode

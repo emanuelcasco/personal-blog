@@ -6,6 +6,7 @@ import { useTranslation } from '@i18n'
 import { composeStyles } from '@styles/theme'
 
 import styles from './Navbar.css'
+import ThemePicker from '@components/UI/ThemePicker'
 
 function Header() {
   const router = useRouter()
@@ -52,6 +53,7 @@ function Header() {
         </a>
       </Link>
       <LanguagePicker />
+      <ThemePicker />
     </nav>
   )
 }

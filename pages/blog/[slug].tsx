@@ -10,6 +10,7 @@ import { Post } from '@entities'
 import { i18nApply, I18nPage, i18nPageContext } from '@i18n'
 import { markdownToHtml } from '@services/markdown.service'
 import { getAllPosts, getPostBySlug } from '@services/posts.service'
+import PostAuthor from '@components/Posts/PostAuthor'
 
 type BlogPostPageStatic = I18nPage<{
   locale: string
@@ -37,7 +38,7 @@ const BlogPostPage: BlogPostPageStatic = ({ post }) => {
           <>
             <PostHeader post={post} />
             <PostBody content={post.content} />
-            {/* <PostAuthor post={post} /> */}
+            {/* <PostAuthor /> */}
           </>
         )}
       </StackContainer>

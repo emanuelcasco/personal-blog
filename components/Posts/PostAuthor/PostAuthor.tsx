@@ -1,16 +1,9 @@
 import FlexContainer from '@components/UI/Containers/FlexContainer'
 import StackContainer from '@components/UI/Containers/StackContainer'
-import { Post } from '@entities'
-import { useTranslation } from '@i18n'
 
 import styles from './PostAuthor.css'
 
-type PostAuthorProps = {
-  post: Post
-}
-
-const PostAuthor = ({ post }: PostAuthorProps) => {
-  const { t } = useTranslation('post')
+const PostAuthor = () => {
   return (
     <FlexContainer tag="aside">
       <img

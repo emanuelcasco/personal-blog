@@ -4,9 +4,10 @@ import { tokens } from '@styles/theme'
 
 const languagePicker = style({
   border: 'none',
-  background: tokens.colors.background,
   color: tokens.colors.neutral,
   fontWeight: 300,
+  backgroundColor: 'transparent',
+  appearance: 'none',
   ':hover': {
     cursor: 'pointer',
   },
