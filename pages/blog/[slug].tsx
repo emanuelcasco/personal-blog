@@ -53,7 +53,7 @@ export async function getStaticProps(
 
   const morePosts = getAllPosts(context.locale, {
     pagination: { limit: 3 },
-    filter: (post) => post.slug !== context.params.slug,
+    filterBy: (post) => post.slug !== context.params.slug,
   })
 
   return {

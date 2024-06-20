@@ -16,7 +16,7 @@ tags: [documentation, software architecture, software design]
 
 Durante el ciclo de vida de un proyecto, **gran parte del tiempo del equipo es dedicado a la toma de decisiones**, estas pueden ir desde cómo diseñar un nuevo servicio, cómo migrar una base de datos, que servicio de terceros utilizar, etc. La falta de un proceso de documentación que acompañe el crecimiento del proyecto puede traer problemas a la larga, volver pasos hacia atrás para recordar los motivos de una decisión suele ser una tarea complicada.
 
-El paso del tiempo y la rotación del equipo, si no es acompañada por material que permita la transmición de conocimiento, resulta en perdida de aprendizajes y experiencias adquiridas. Recordando la primer lección de historia, **"Aquellos que no recuerdan el pasado están condenados a repetirlo"**.
+El paso del tiempo y la rotación del equipo, si no es acompañada por material que permita la transmisión de conocimiento, resulta en perdida de aprendizajes y experiencias adquiridas. Recordando la primer lección de historia, **"Aquellos que no recuerdan el pasado están condenados a repetirlo"**.
 
 Sin embargo, como mencione anteriormente, este es un problema común, por lo tanto, hay varias posibles soluciones disponibles según tus necesidades. En este post voy a enfocarme en dos herramientas con las que me he sentido particularmente cómodo trabajando, estas son:
 
@@ -27,16 +27,16 @@ Sin embargo, como mencione anteriormente, este es un problema común, por lo tan
 
 El uso de RFC es tan viejo como Internet, incluso más ya que [se uso para timar decisiones en la construcción del WWW (World Wide Web)](https://www.rfc-editor.org/rfc-index.html), sin embargo, su uso se estuvo expandiendo en los últimos años de la mano de proyectos open source como [React](https://github.com/reactjs/rfcs) o [Rust](https://github.com/rust-lang/rfcs).
 
-Basicamente, un documento RFC (Request for Comments) **es una propuesta técnica escrita que incentiva la iteración de la misma por medio de un analisis exhaustivo y el feedback de pares**. El objetivo es conseguir la mejor solución posible para un problema y mitigar el riesgo de complicaciones en el desarrollo, en definitiva, estamos hablando de **tomar mejores decisiones**.
+Básicamente, un documento RFC (Request for Comments) **es una propuesta técnica escrita que incentiva la iteración de la misma por medio de un analisis exhaustivo y el feedback de pares**. El objetivo es conseguir la mejor solución posible para un problema y mitigar el riesgo de complicaciones en el desarrollo, en definitiva, estamos hablando de **tomar mejores decisiones**.
 
 ### Ciclo de vida
 
 1. **Propuesta**: Se presenta una propuesta de cambio.
-2. **Iteración**: La propuesta es iterada con pares con el fín de encontrar errores o posibilidades de mejora, en este proceso es posible que se detecte que la propuesta no es implmentable, en cuyo caso pasa a ser deprecada.
+2. **Iteración**: La propuesta es iterada con pares con el fín de encontrar errores o posibilidades de mejora, en este proceso es posible que se detecte que la propuesta no es implementable, en cuyo caso pasa a ser deprecada.
 3. **Implementación**: Luego que la propuesta alcanza un nivel de madurez suficiente y el documento está "completo", entonces es momento de implementar la solución.
 4. **Mantenimiento**: Una vez implementado, puede que un cambio modifique alguna definición de este documento, en ese caso se puede actualizar el RFC o bien marcarlo como deprecado indicando que otro RFC modifica el comportamiento.
 
-👉 *Idealmente, no se debe modificar el contenido de un RFC ya que sino este perdería su valor historico, por eso, es mejor cambiar su estado (para que quede claro que el comportamiento varió) y enlazar los documentos relacionados*.
+👉 *Idealmente, no se debe modificar el contenido de un RFC ya que sino este perdería su valor histórico, por eso, es mejor cambiar su estado (para que quede claro que el comportamiento varió) y enlazar los documentos relacionados*.
 
 ### Ejemplos
 

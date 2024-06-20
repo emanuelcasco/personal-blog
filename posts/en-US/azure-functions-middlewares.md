@@ -21,7 +21,7 @@ I published this post originally on Medium, you can find it here: [Implement mid
 Web frameworks, like Express, Fastify or Hapi, has solved this problem using the middleware pattern. This pattern allows developers to isolate these common technical concerns into "steps" that decorate the main business logic code.
 
 After deciding to implement this pattern in my project, I made a small search to check if someone had already implemented a similar solution.
-Unfortunately, the few solutions I found didn‘t meet my needs, so I decided to implement it myself.
+Unfortunately, the few solutions I found didn't meet my needs, so I decided to implement it myself.
 
 **That’s is how Azure-Middleware was born.**
 
@@ -34,7 +34,7 @@ See more:
 
 ### Validation
 
-In serverless arquitectures is essential to be able to determine the correct behavior of each function as separate pieces of code. Therefore, in order to avoid unexpected behaviors, is important ensure that function inputs belong to its domain.
+In serverless architectures is essential to be able to determine the correct behavior of each function as separate pieces of code. Therefore, in order to avoid unexpected behaviors, is important ensure that function inputs belong to its domain.
 
 To accomplish this mission Azure-Middleware uses Joi. It allows us to define a schema and check if the input message is valid or not.
 With the validate method you can define the scheme that will be used to validate the messages. If your function is called with an invalid message then an exception will be thrown and your function won’t be executed.

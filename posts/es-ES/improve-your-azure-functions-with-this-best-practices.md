@@ -118,9 +118,9 @@ También es una buena idea implementar una [estrategía de backoff incremental](
 
 Una de las grandes ventajas de las arquitecturas serverless es que podemos enfocarnos en la lógica de negocio de nuestra solución. Pero, los problemas comienzan cuando debemos lidiar con atributos del código fuera del mismo, como por ejemplo: parseo de entradas, validaciones, serialización, manejo de errores, etc.
 
-Todo este código auxiliar, pero necesario, puede terminar ensuciando nuestra lógica de negocio, volviendola díficil de leer y de mantener. Para estos casos, [Azure Middleware Engine](https://www.npmjs.com/package/azure-middleware) ayuda a los desarrolaldores a **dividir el problema en partes más pequeñas**, isolando la lógica en "pasos" y manteniendo tú código limpio, declarativo y fácil de leer.
+Todo este código auxiliar, pero necesario, puede terminar ensuciando nuestra lógica de negocio, volviéndola difícil de leer y de mantener. Para estos casos, [Azure Middleware Engine](https://www.npmjs.com/package/azure-middleware) ayuda a los desarrolladores a **dividir el problema en partes más pequeñas**, aislando la lógica en "pasos" y manteniendo tú código limpio, declarativo y fácil de leer.
 
-Escribí un articulo sobre esta herramiente, puedes encontrarlo en el siguiente link: [Implementando middlewares en Azure Functions](/es/blog/azure-functions-middlewares).
+Escribí un articulo sobre esta herramienta, puedes encontrarlo en el siguiente link: [Implementando middlewares en Azure Functions](/es/blog/azure-functions-middlewares).
 
 Por ejemplo:
 
@@ -146,7 +146,7 @@ module.exports = ChainedFunction.listen();
 
 ## En resumen
 
-Terminamos aquí, estas buenas practicas me ayudaron a mi equipo y a mí a mejorar nuestra productividad, la cálidad del código y la performance de las funciones. Si también te son útiles, por favor, dejamelo saber contactandome por cualquiera de los canales que dejo debajo.
+Terminamos aquí, estas buenas practicas me ayudaron a mi equipo y a mí a mejorar nuestra productividad, la calidad del código y la performance de las funciones. Si también te son útiles, por favor, déjamelo saber contactándome por cualquiera de los canales que dejo debajo.
 
 Links útiles:
 

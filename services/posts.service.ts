@@ -33,17 +33,26 @@ export const getPostBySlug = (slug: string, locale = 'en-US') => {
 
 interface GetAllPostsArgs {
   pagination?: { limit: number; from?: number }
-  filter?: (post: Post) => boolean
+  filterBy?: (post: Post) => boolean
 }
 
 export const getAllPosts = (
   locale = 'en-US',
   options: GetAllPostsArgs = defaultPostRequestOptions
 ) => {
-  const { pagination, filter } = { ...defaultPostRequestOptions, ...options }
-  return getPostSlugs(locale)
+  const { pagination, filterBy = () => true } = {
+    ...defaultPostRequestOptions,
+    ...options,
+  }
+  const posts = getPostSlugs(locale)
     .map((slug) => getPostBySlug(slug, locale))
-    .filter(filter)
+    .filter(filterBy)
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
     .slice(pagination.from, (pagination.from ?? 0) + pagination.limit)
+
+  console.log(
+    '🚀 ~ posts:',
+    posts.map((p) => ({ name: p.title, date: p.date }))
+  )
+  return posts
 }

@@ -31,7 +31,7 @@ To prevent this, you can:
 
 - Avoid large dependencies whenever possible.
 - Refactor large functions into smaller pieces of code that work together and return responses fast.
-- Respect the "single responsability principle", each function should have a single responsibility over a single part of the functionality provided by the software.
+- Respect the "single responsibility principle", each function should have a single responsibility over a single part of the functionality provided by the software.
 
 ![Refactor large functions into smaller pieces of code that work together and return responses fast.](/assets/blog/improve-your-azure-functions-with-this-best-practices/image01.png)
 
