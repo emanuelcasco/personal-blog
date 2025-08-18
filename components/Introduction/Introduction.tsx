@@ -1,10 +1,9 @@
 import SocialLinks from '@components/SocialLinks'
-import Avatar from '@components/UI/Avatar'
-import FlexContainer from '@components/UI/Containers/FlexContainer'
 import Heading from '@components/UI/Heading'
 import { useTranslation, Trans } from '@i18n'
 
 import styles from './Introduction.css'
+import StackContainer from '@components/UI/Containers/StackContainer'
 
 const AnchorText = (props: {
   to?: string
@@ -31,18 +30,12 @@ const Paragraph = (props: { children?: string }) => {
 function Introduction() {
   const { t } = useTranslation('home')
   return (
-    <FlexContainer tag="section">
-      <div>
-        <span className={styles.introduction__greeting}>
-          {t('introduction.greeting')}
-        </span>
-        <Heading type="h1">{t('introduction.name')}</Heading>
-      </div>
-      <div className={styles.introduction__multimedia}>
-        <Avatar />
-        <SocialLinks size={24} />
-      </div>
+    <StackContainer tag="section">
+      <span className={styles.introduction__greeting}>
+        {t('introduction.greeting')}
+      </span>
       <div className={styles.introduction__presentation}>
+        <Heading type="h1">{t('introduction.name')}</Heading>
         <Trans
           i18nKey="introduction.presentation"
           components={{
@@ -54,8 +47,9 @@ function Introduction() {
           }}
           t={t}
         />
+        <SocialLinks size={24} />
       </div>
-    </FlexContainer>
+    </StackContainer>
   )
 }
 

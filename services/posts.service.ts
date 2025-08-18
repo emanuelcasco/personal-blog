@@ -27,6 +27,7 @@ export const getPostBySlug = (slug: string, locale = 'en-US') => {
     content: content,
     readTime: calculateReadingTime(content).minutes,
     date: data.date,
+    tags: data.tags || [],
     ...data,
   } as unknown as Post
 }

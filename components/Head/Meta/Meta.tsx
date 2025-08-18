@@ -42,8 +42,11 @@ const Meta = () => {
       {/* Meta */}
       <meta
         name="description"
-        content={`//TODO: Replace with a real description.A statically generated blog example using Next.js and.`}
+        content="Emanuel Casco's personal blog about software development, programming, and technology. Sharing insights on JavaScript, TypeScript, Node.js, Azure, and modern web development."
       />
+      <meta name="author" content="Emanuel Casco" />
+      <meta name="robots" content="index, follow" />
+      <meta name="googlebot" content="index, follow" />
     </>
   )
 }

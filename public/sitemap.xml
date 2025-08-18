@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://emanuelcasco.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/es-ES</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/es-ES/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/me</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/me"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/me"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/es-ES/me</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/me"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/me"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/blog/azure-functions-middlewares</loc>
+    <lastmod>2019-01-04T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/blog/azure-functions-middlewares"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog/azure-functions-middlewares"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/blog/document-with-rfc-and-adr</loc>
+    <lastmod>2021-03-31T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/blog/document-with-rfc-and-adr"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog/document-with-rfc-and-adr"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/blog/effective-code-reviews-guide</loc>
+    <lastmod>2025-01-18T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/blog/effective-code-reviews-guide"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog/effective-code-reviews-guide"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/blog/git-worktrees-guide</loc>
+    <lastmod>2025-03-03T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/blog/git-worktrees-guide"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog/git-worktrees-guide"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/blog/improve-your-azure-functions-with-this-best-practices</loc>
+    <lastmod>2019-09-23T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/blog/improve-your-azure-functions-with-this-best-practices"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog/improve-your-azure-functions-with-this-best-practices"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/es-ES/blog/azure-functions-middlewares</loc>
+    <lastmod>2019-01-04T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/blog/azure-functions-middlewares"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog/azure-functions-middlewares"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/es-ES/blog/document-with-rfc-and-adr</loc>
+    <lastmod>2021-03-31T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/blog/document-with-rfc-and-adr"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog/document-with-rfc-and-adr"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/es-ES/blog/effective-code-reviews-guide</loc>
+    <lastmod>2025-01-18T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/blog/effective-code-reviews-guide"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog/effective-code-reviews-guide"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/es-ES/blog/git-worktrees-guide</loc>
+    <lastmod>2025-03-03T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/blog/git-worktrees-guide"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog/git-worktrees-guide"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/es-ES/blog/improve-your-azure-functions-with-this-best-practices</loc>
+    <lastmod>2019-09-23T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/blog/improve-your-azure-functions-with-this-best-practices"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog/improve-your-azure-functions-with-this-best-practices"/>
+  </url>
+</urlset>

@@ -6,6 +6,7 @@ export type Post = {
   coverImage: string
   excerpt: string
   content: string
+  tags: string[]
 }
 
 export type PostSummary = {
@@ -16,4 +17,5 @@ export type PostSummary = {
   coverImage: string
   excerpt: string
   content: string
+  tags: string[]
 }
