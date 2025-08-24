@@ -25,4 +25,5 @@ const rotate = keyframes({
 
 export default {
   themePicker,
+  rotate,
 }

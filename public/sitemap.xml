@@ -83,6 +83,14 @@
     <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog/improve-your-azure-functions-with-this-best-practices"/>
   </url>
   <url>
+    <loc>https://emanuelcasco.com/blog/introduction-to-lorawan</loc>
+    <lastmod>2025-08-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/blog/introduction-to-lorawan"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog/introduction-to-lorawan"/>
+  </url>
+  <url>
     <loc>https://emanuelcasco.com/es-ES/blog/azure-functions-middlewares</loc>
     <lastmod>2019-01-04T00:00:00.000Z</lastmod>
     <changefreq>monthly</changefreq>
@@ -121,5 +129,13 @@
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/blog/improve-your-azure-functions-with-this-best-practices"/>
     <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog/improve-your-azure-functions-with-this-best-practices"/>
+  </url>
+  <url>
+    <loc>https://emanuelcasco.com/es-ES/blog/introduction-to-lorawan</loc>
+    <lastmod>2025-08-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://emanuelcasco.com/blog/introduction-to-lorawan"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://emanuelcasco.com/es-ES/blog/introduction-to-lorawan"/>
   </url>
 </urlset>
