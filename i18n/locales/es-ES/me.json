@@ -1,5 +1,89 @@
 {
   "meta": {
-    "title": "Sobre mi"
+    "title": "Sobre Mí - Emanuel Casco | Arquitecto de Software & Tech Lead",
+    "description": "Arquitecto de Software y Tech Lead especializado en tecnología climática, desarrollo full-stack y liderazgo técnico. Actualmente en Waterplan (YC S21).",
+    "keywords": "Emanuel Casco, Arquitecto de Software, Tech Lead, Tecnología Climática, Desarrollador Full Stack, Waterplan"
+  },
+  "header": {
+    "title": "Sobre Mí",
+    "intro": "Soy un <strong>Arquitecto de Software y Tech Lead</strong> apasionado por construir tecnología que genere un impacto positivo en el mundo. Actualmente lidero el desarrollo técnico en <link1>Waterplan</link1>, una startup de tecnología climática respaldada por Y Combinator enfocada en la sostenibilidad del agua."
+  },
+  "sections": {
+    "experience": "Experiencia",
+    "education": "Educación",
+    "technologies": "Tecnologías:"
+  },
+  "experience": {
+    "waterplan": {
+      "company": "Waterplan (YC S21)",
+      "role": "Ingeniero de Software",
+      "period": "Oct 2021 - Presente · 3 años 11 meses",
+      "description": [
+        "Construyendo y mejorando la plataforma climática líder mundial para medir, responder e informar sobre el riesgo hídrico",
+        "Colaborando con equipos multifuncionales para recopilar requisitos y entregar soluciones de software de alta calidad",
+        "Liderando discusiones arquitectónicas e implementando soluciones robustas en iteraciones cortas",
+        "Desarrollando aplicaciones intensivas en datos para medición de impacto ambiental para impulsar empresas hacia un mundo con seguridad hídrica"
+      ],
+      "technologies": ["Node.js", "Express.js", "TypeScript", "React.js", "DynamoDB", "AWS Services", "Python", "Lambda", "Step Functions"]
+    },
+    "wolox_architect": {
+      "company": "Wolox",
+      "role": "Arquitecto de Software",
+      "period": "Dic 2019 - Ago 2021 · 1 año 9 meses",
+      "description": [
+        "Trabajé como líder técnico en el equipo de pagos para MODO, una billetera digital, junto a un equipo increíble",
+        "Lideré decisiones arquitectónicas y estrategia técnica para sistemas de procesamiento de pagos",
+        "Mentoreé equipos de desarrollo y establecí mejores prácticas para desarrollo backend escalable"
+      ],
+      "technologies": ["Express.js", "TypeScript", "PostgreSQL", "Node.js"]
+    },
+    "wolox_developer": {
+      "company": "Wolox",
+      "role": "Desarrollador de Software",
+      "period": "Oct 2018 - Ago 2021 · 2 años 11 meses",
+      "description": [
+        "2018-2019: Participé en proyectos de e-commerce en Buenos Aires y Santiago, colaborando con equipos distribuidos en Colombia, México, India y más",
+        "2019-2021: Contribuí a varios equipos, diseñando e implementando diversas soluciones con arquitecturas de micro-servicios, serverless y monolitos",
+        "2019-2021: Serví como entrenador de Node.js y contribuí al desarrollo de herramientas internas y workshops"
+      ],
+      "technologies": ["Azure Functions", "Node.js", "Terraform", "TypeScript", "PostgreSQL", "DynamoDB", "GraphQL", "Jest"]
+    },
+    "wolox_qa": {
+      "company": "Wolox",
+      "role": "Analista de QA de Software",
+      "period": "Feb 2016 - Oct 2018 · 2 años 9 meses",
+      "description": [
+        "Jugué un papel fundamental en el establecimiento del primer departamento de QA de la empresa, participando en entrevistas y definiendo procedimientos",
+        "Desarrollé y mantuve herramientas internas usando Node.js, Vue.js, Express y Sequelize para automatizar flujos de QA",
+        "Colaboré en la creación y entrega del curso de QA Tester para Fundación Telefónica",
+        "Desarrollé suites de pruebas de regresión automatizadas con Selenium (Ruby), mejorando la cobertura de pruebas",
+        "Contribuí al diseño e implementación de Chatbots Watson IBM, realicé auditorías SEO"
+      ],
+      "technologies": ["Node.js", "Vue.js", "Express", "Sequelize", "Selenium", "Ruby", "Watson IBM"]
+    },
+    "freelance": {
+      "company": "Freelance",
+      "role": "Diseñador Gráfico y Web",
+      "period": "Dic 2013 - Ene 2016 · 2 años 2 meses",
+      "description": [
+        "Brindé servicios de diseño web y gráfico para empresas locales",
+        "Creé sitios web personalizados y soluciones de identidad visual",
+        "Gestioné relaciones con clientes y entrega de proyectos desde la concepción hasta la finalización"
+      ],
+      "technologies": ["HTML", "CSS", "JavaScript", "Adobe Creative Suite", "WordPress"]
+    }
+  },
+  "education": {
+    "utn": {
+      "institution": "Universidad Tecnológica Nacional",
+      "degree": "Ingeniería en Sistemas (Incompleta)",
+      "period": "2008 - 2013",
+      "description": [
+        "Estudio integral de fundamentos de ciencias de la computación y principios de programación",
+        "Aprendí lenguajes de programación fundamentales: C, C++, C#, Java",
+        "Fundamentos de desarrollo web: HTML, CSS, JavaScript", 
+        "Administración de sistemas y manejo de servidores Linux"
+      ]
+    }
   }
 }

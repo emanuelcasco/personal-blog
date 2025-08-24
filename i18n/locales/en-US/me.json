@@ -1,5 +1,89 @@
 {
   "meta": {
-    "title": "About me"
+    "title": "About Me - Emanuel Casco | Software Architect & Tech Lead",
+    "description": "Software Architect and Tech Lead specializing in climate technology, full-stack development, and technical leadership. Currently at Waterplan (YC S21).",
+    "keywords": "Emanuel Casco, Software Architect, Tech Lead, Climate Tech, Full Stack Developer, Waterplan"
+  },
+  "header": {
+    "title": "About Me",
+    "intro": "I'm a <strong>Software Architect and Tech Lead</strong> passionate about building technology that makes a positive impact on the world. Currently leading technical development at <link1>Waterplan</link1>, a Y Combinator-backed climate tech startup focused on water sustainability."
+  },
+  "sections": {
+    "experience": "Experience",
+    "education": "Education",
+    "technologies": "Technologies:"
+  },
+  "experience": {
+    "waterplan": {
+      "company": "Waterplan (YC S21)",
+      "role": "Software Engineer",
+      "period": "Oct 2021 - Present · 3 yrs 11 mos",
+      "description": [
+        "Building and enhancing the world's leading all-in-one climate platform for measuring, responding to, and reporting on water risk",
+        "Collaborating with cross-functional teams to gather requirements and deliver high-quality software solutions",
+        "Leading architectural discussions and implementing robust solutions in short iterations",
+        "Developing data-intensive applications for environmental impact measurement to propel companies towards a water-secure world"
+      ],
+      "technologies": ["Node.js", "Express.js", "TypeScript", "React.js", "DynamoDB", "AWS Services", "Python", "Lambda", "Step Functions"]
+    },
+    "wolox_architect": {
+      "company": "Wolox",
+      "role": "Software Architect",
+      "period": "Dec 2019 - Aug 2021 · 1 yr 9 mos",
+      "description": [
+        "Worked as tech leader on the payments squad for MODO, a digital wallet, alongside an incredible team",
+        "Led architectural decisions and technical strategy for payment processing systems",
+        "Mentored development teams and established best practices for scalable backend development"
+      ],
+      "technologies": ["Express.js", "TypeScript", "PostgreSQL", "Node.js"]
+    },
+    "wolox_developer": {
+      "company": "Wolox",
+      "role": "Software Developer",
+      "period": "Oct 2018 - Aug 2021 · 2 yrs 11 mos",
+      "description": [
+        "2018-2019: Engaged in e-commerce projects in Buenos Aires and Santiago, collaborating with distributed teams across Colombia, Mexico, India, and more",
+        "2019-2021: Contributed to various teams, designing and implementing diverse solutions with micro-services, serverless, and monolith architectures",
+        "2019-2021: Served as Node.js trainer and contributed to development of internal tools and workshops"
+      ],
+      "technologies": ["Azure Functions", "Node.js", "Terraform", "TypeScript", "PostgreSQL", "DynamoDB", "GraphQL", "Jest"]
+    },
+    "wolox_qa": {
+      "company": "Wolox",
+      "role": "Software QA Analyst",
+      "period": "Feb 2016 - Oct 2018 · 2 yrs 9 mos",
+      "description": [
+        "Played a pivotal role in establishing the company's first QA department, participating in interviews and defining core procedures",
+        "Developed and maintained internal tools using Node.js, Vue.js, Express, and Sequelize to automate QA workflows",
+        "Collaborated in creating and delivering QA Tester course for Telefónica Foundation",
+        "Engineered automated regression test suites with Selenium (Ruby), boosting test coverage",
+        "Contributed to Watson IBM Chatbots design and implementation, performed SEO audits"
+      ],
+      "technologies": ["Node.js", "Vue.js", "Express", "Sequelize", "Selenium", "Ruby", "Watson IBM"]
+    },
+    "freelance": {
+      "company": "Freelance",
+      "role": "Graphic and Web Designer",
+      "period": "Dec 2013 - Jan 2016 · 2 yrs 2 mos",
+      "description": [
+        "Provided web design and graphic design services for local businesses",
+        "Created custom websites and visual identity solutions",
+        "Managed client relationships and project delivery from conception to completion"
+      ],
+      "technologies": ["HTML", "CSS", "JavaScript", "Adobe Creative Suite", "WordPress"]
+    }
+  },
+  "education": {
+    "utn": {
+      "institution": "Universidad Tecnológica Nacional",
+      "degree": "Computer Science & Engineering (Unfinished)",
+      "period": "2008 - 2013",
+      "description": [
+        "Comprehensive study of computer science fundamentals and programming principles",
+        "Learned core programming languages: C, C++, C#, Java",
+        "Web development foundations: HTML, CSS, JavaScript", 
+        "System administration and Linux server management"
+      ]
+    }
   }
 }
