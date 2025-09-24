@@ -15,6 +15,105 @@ tags:
 - Se _sienten_ como tener copias de tu carpeta de proyecto, pero son mucho más eficientes.
 - Te ayudan a evitar el infierno del stash, aceleran el cambio de contexto y mantienen tu repo ordenado.
 
+### El flujo tradicional: Git Flow y stashing
+
+Antes de sumergirnos en los worktrees, repasemos rápidamente cómo la mayoría de los desarrolladores manejan múltiples ramas hoy.
+
+**Git Flow** es la estrategia de branching estándar donde:
+
+1. Trabajas en una rama de feature
+2. Necesitas cambiar a otra rama (hotfix, revisión de PR, etc.)
+3. O commiteas trabajo incompleto o haces stash de tus cambios
+4. Cambias de rama con `git checkout` o `git switch`
+5. Haces tu trabajo
+6. Vuelves atrás y haces unstash
+
+![Git Flow](/assets/blog/git-worktrees-guide/img-1.png)
+
+Este flujo funciona, pero tiene fricción:
+
+```bash
+# Flujo clásico de stash
+git stash push -m "WIP: a mitad de feature X"
+git checkout hotfix/urgent-bug
+# ... arreglar el bug ...
+git checkout feature/my-feature
+git stash pop
+# ... rezar que no haya conflictos ...
+```
+
+![Git Stash](/assets/blog/git-worktrees-guide/img-2.png)
+
+**Los problemas con hacer stash:**
+
+- **Sobrecarga mental**: recordar qué guardaste en stash, cuándo, y por qué
+- **Manejo del stack de stash**: múltiples stashes se acumulan, pierdes la cuenta
+- **Conflictos de merge**: stash pop puede entrar en conflicto con tus cambios actuales
+- **Pérdida de contexto**: pierdes tu modelo mental de lo que estabas haciendo
+- **Problemas de tooling**: el indexado del IDE, linters, y watchers de tests se confunden con los cambios de rama
+
+**¿Qué tal commitear WIP?**
+
+Algunos devs commitean trabajo incompleto para evitar hacer stash:
+
+```bash
+git add .
+git commit -m "WIP: feature a medio hacer"
+git checkout hotfix/urgent-bug
+# ... más tarde ...
+git checkout feature/my-feature
+git reset HEAD~1  # deshacer commit WIP
+```
+
+Esto contamina tu historial de commits y requiere limpieza después (rebase interactivo, amend, etc.). No es ideal.
+
+### Cómo los worktrees resuelven esto
+
+Los worktrees eliminan la necesidad de hacer stash o commits WIP completamente. En lugar de cambiar ramas en una carpeta, tienes múltiples carpetas, cada una con su propia rama en checkout:
+
+```bash
+# No se necesita stash
+cd ../hotfix-urgent-bug    # ya está en la rama de hotfix
+# ... arreglar el bug ...
+cd ../myrepo-feature-x     # de vuelta al trabajo del feature, exactamente como lo dejaste
+```
+
+![Git Worktrees](/assets/blog/git-worktrees-guide/img-3.png)
+
+**Ventajas clave sobre hacer stash:**
+
+| Flujo de stashing                         | Flujo de worktrees                                      |
+| ----------------------------------------- | ------------------------------------------------------- |
+| Guardar estado, cambiar, restaurar       | Solo hacer `cd` a otra carpeta                          |
+| Riesgo de conflictos al hacer stash pop   | Sin conflictos, las ramas están aisladas                |
+| El stack de stash se vuelve desordenado   | Cada worktree es autocontenido                          |
+| El IDE re-indexa en cada cambio de rama   | Cada worktree tiene su propio estado de IDE             |
+| No puedes correr dos ramas simultáneamente | Puedes correr dev servers, tests, builds en paralelo   |
+| Contaminación del historial con commits WIP | Commits limpios, no se necesita WIP                   |
+
+**Ejemplo del mundo real:**
+
+Estás en medio de un refactor complejo. De repente, producción se rompe. Con stashing:
+
+```bash
+git stash  # pierdes tu contexto mental
+git checkout hotfix
+# arreglas el bug, pero ahora olvidaste dónde estabas en el refactor
+git checkout feature
+git stash pop  # esperas que nada se rompa
+# pasas 10 minutos recordando lo que estabas haciendo
+```
+
+Con worktrees:
+
+```bash
+cd ../myrepo-hotfix  # instantáneamente listo, sin pérdida de contexto
+# arreglas el bug
+cd ../myrepo-refactor  # de vuelta exactamente a donde lo dejaste
+```
+
+Tu IDE, sesiones de terminal, procesos corriendo—todo permanece intacto.
+
 ### ¿Qué son los Git Worktrees?
 
 Un Git worktree es esencialmente otro directorio de trabajo vinculado al mismo repositorio. Te permite hacer checkout de diferentes ramas en carpetas separadas, compartiendo los mismos datos subyacentes de Git.

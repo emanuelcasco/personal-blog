@@ -34,7 +34,7 @@ const Meta = () => {
       {/* Fonts & External Styles */}
       <link
         media="all"
-        href={`https://unpkg.com/prism-themes@1.6.0/themes/prism-xonokai.css`}
+        href={`https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css`}
         rel="stylesheet"
       />
       {/* Feed */}

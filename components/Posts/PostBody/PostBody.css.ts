@@ -101,7 +101,6 @@ globalStyle(
 
 // Code styling - Medium-inspired
 globalStyle(`${postBody} code`, {
-  backgroundColor: 'rgba(135, 131, 120, 0.15)',
   color: '#eb5757',
   borderRadius: '3px',
   fontSize: '18px',
@@ -112,7 +111,6 @@ globalStyle(`${postBody} code`, {
 })
 
 globalStyle(`${postBody} pre`, {
-  backgroundColor: '#f7f6f3',
   borderRadius: '6px',
   padding: '24px',
   marginTop: '32px',
@@ -122,12 +120,11 @@ globalStyle(`${postBody} pre`, {
 })
 
 globalStyle(`${postBody} pre code`, {
-  backgroundColor: 'transparent',
-  color: '#24292e',
   padding: '0',
   fontSize: '16px',
   lineHeight: '1.45',
   fontWeight: 400,
+  maxWidth: 'max(100%, 500px)',
 })
 
 // Links - Medium style
@@ -160,7 +157,7 @@ globalStyle(`${postBody} blockquote`, {
 
 // Images - Medium style with captions
 globalStyle(`${postBody} img`, {
-  maxWidth: 'max(100%, 500px)',
+  maxWidth: 'min(100%, 700px)',
   height: 'auto',
   display: 'block',
   margin: '32px auto',

@@ -192,10 +192,15 @@ set -euo pipefail
 # or run directly if on PATH:
 #   git-wta <new-branch> [start-point]
 
-err() { printf "Error: %s\n" "$*" >&2; }
+err() {
+  printf "Error: %s\n" "$*" >&2
+}
 
 need_cmd() {
-  command -v "$1" >/dev/null 2>&1 || { err "Missing required command: $1"; exit 127; }
+  command -v "$1" >/dev/null 2>&1 || {
+    err "Missing required command: $1"
+    exit 127
+  }
 }
 
 need_cmd git
@@ -236,7 +241,9 @@ git worktree prune >/dev/null 2>&1 || true
 # can be checked out in only one worktree at a time)
 current_branch="$(git rev-parse --abbrev-ref HEAD)"
 if [[ "$current_branch" == "$branch" ]]; then
-  default_base="$(git symbolic-ref -q --short refs/remotes/origin/HEAD 2>/dev/null || true)"
+  default_base="$(
+    git symbolic-ref -q --short refs/remotes/origin/HEAD 2>/dev/null || true
+  )"
   default_base="${default_base#origin/}"
   base_ref="${default_base:-main}"
   git switch "$base_ref" 2>/dev/null \
@@ -245,7 +252,9 @@ if [[ "$current_branch" == "$branch" ]]; then
 fi
 
 # If the branch is already checked out in another active worktree, abort
-if git worktree list --porcelain | awk '/^branch /{print $2}' | grep -qx "refs/heads/$branch"; then
+if git worktree list --porcelain \
+  | awk '/^branch /{print $2}' \
+  | grep -qx "refs/heads/$branch"; then
   err "Branch '$branch' is already checked out in another worktree."
   exit 1
 fi
@@ -274,7 +283,8 @@ else
 fi
 
 echo "Copying .env files..."
-# Copy all files specifically named ".env" (skip .git and node_modules trees while searching)
+# Copy all files specifically named ".env"
+# (skip .git and node_modules trees while searching)
 while IFS= read -r -d '' env_path; do
   rel="${env_path#"$repo_root"/}"
   target="$dest_dir/$rel"
@@ -287,12 +297,14 @@ done < <(find "$repo_root" \
           -type f -name .env -print0)
 
 echo "Copying node_modules directories (this may take a while)..."
-# Copy every top-level directory named node_modules (any depth), no recursion into them during discovery
+# Copy every top-level directory named node_modules (any depth),
+# no recursion into them during discovery
 while IFS= read -r -d '' nm_path; do
   rel="${nm_path#"$repo_root"/}"
   target="$dest_dir/$rel"
   mkdir -p "$target"
-  # Trailing slashes ensure rsync copies directory contents into target directory
+  # Trailing slashes ensure rsync copies directory contents
+  # into target directory
   rsync -a "$nm_path/" "$target/"
   echo "  node_modules -> $rel"
 done < <(find "$repo_root" -type d -name node_modules -prune -print0)
