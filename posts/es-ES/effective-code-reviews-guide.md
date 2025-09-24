@@ -14,7 +14,7 @@ Los code reviews son una de las prácticas más poderosas en el desarrollo de so
 
 Pero en aplicaciones reales, muchos equipos luchan con procesos de revisión que o aprueban cambios automáticamente o se empantanan en detalles menores. Toda esta revisión inefectiva termina contaminando lo que debería ser una experiencia colaborativa de aprendizaje, volviendo el proceso más difícil de sostener y menos valioso para el equipo.
 
-## Entendiendo los Code Reviews: Más que Solo Cazar Bugs
+## Más que Solo Cazar Bugs
 
 En su núcleo, un code review es **un proceso que los desarrolladores de software usan para inspeccionar el código de otros y asegurar que pasa un conjunto de estándares acordados**. Pensá en esto como revisar tu trabajo antes de que salga a producción—como revisar un email importante o hacer que alguien revise un documento antes de publicarlo.
 
@@ -66,79 +66,123 @@ En lugar de un commit masivo que "agrega autenticación de usuario," dividilo:
 // Quinto commit: Actualizar tests y documentación
 ```
 
-### Dominando la Comunicación
+### Dominando la Comunicación con Conventional Comments
 
-El tipo de comentario `suggestion` es usado para proveer enfoques alternativos, mientras que el tipo `issue` indica problemas bloqueantes. Cada tipo de comentario tiene un propósito específico y respuesta esperada.
+[Conventional Comments](https://conventionalcomments.org/) proveen un formato estandarizado para feedback en code reviews, haciendo la comunicación más clara y accionable. El formato sigue un patrón simple:
 
-La información fluye entre autor y reviewer cuando se usa feedback estructurado. El progreso avanza al siguiente ciclo de revisión cuando se llama a `resolve`.
+```
+<label> [decorations]: <subject>
 
-```js
-// suggestion: Considerá usar un Map acá en lugar de loops anidados
-// para performance O(n) vs O(n²), especialmente porque esperamos
-// que este dataset crezca significativamente.
-
-// issue: Esta validación necesita manejar valores null antes
-// de que el método pueda ser llamado de forma segura.
-
-// praise: ¡Esta es una excelente solución a un problema complicado!
+[discussion]
 ```
 
-`resolve` es un método que concluye hilos de discusión. Es usado para iterar a través del ciclo de feedback de revisión.
+**Etiquetas Principales**:
+- `praise`: Destacar algo positivo (refuerza buenas prácticas)
+- `nitpick`: Issues menores que no bloquean (generalmente non-blocking)
+- `suggestion`: Proponer mejoras o alternativas
+- `issue`: Problemas que deben resolverse antes del merge
+- `todo`: Cambios pequeños y necesarios
+- `question`: Buscar clarificación o discusión
+- `thought`: Ideas que no requieren acción
+- `chore`: Tareas simples (formateo, renombrado, etc.)
 
-### Integración de Potenciación con IA
+**Decoraciones** (opcionales):
+- `(non-blocking)`: El reviewer no impedirá la aprobación
+- `(blocking)`: Debe resolverse antes del merge
+- `(if-minor)`: Resolver si estás de acuerdo, ignorar si no
 
-La integración de IA funciona muy similar a como funcionan las funciones middleware en web frameworks como Express. Cuando las herramientas de IA están configuradas, ejecutan checks automatizados primero, luego los reviewers humanos se enfocan en preocupaciones de más alto nivel mientras la IA maneja las tareas rutinarias.
-
-Podés encadenar diferentes etapas de revisión de IA y humana usando pipelines estructurados. Si las herramientas automatizadas marcan issues, son manejados antes de que comience la revisión humana.
+**Ejemplos**:
 
 ```js
-// Code Commit → AI Pre-Analysis → Automated Checks → Human Review → AI Summary → Merge
+// praise: ¡Esta abstracción hace el código mucho más mantenible!
 
-module.exports = new ReviewPipeline()
-   .aiPreAnalysis(securityScan, performanceCheck)
-   .humanReview(architectureReview, businessLogicCheck)
-   .aiSummary(documentationUpdate, changelogGeneration)
-   .catch(errorHandler)
-   .merge();
+// suggestion (non-blocking): Considerá usar un Map acá en lugar
+// de loops anidados para performance O(n) vs O(n²), especialmente
+// porque esperamos que este dataset crezca significativamente.
+
+// issue (blocking): Esta validación necesita manejar valores null
+// antes de que el método pueda ser llamado de forma segura.
+
+// question: ¿Qué pasa si la API retorna un error 429 de rate limit?
+
+// nitpick (non-blocking): El nombre de la variable podría ser más
+// descriptivo. Considerá `userAuthToken` en lugar de `token`.
 ```
+
+**Beneficios**:
+- **Claridad**: Los reviewers entienden instantáneamente la intención y urgencia del comentario
+- **Orientado a la acción**: Los autores saben exactamente qué requiere acción
+- **Reduce conflictos**: Las etiquetas explícitas previenen malentendidos
+- **Mejor comunicación async**: Menos ida y vuelta para aclaraciones
 
 ## Técnicas Avanzadas
 
-### Donde la IA Excele Hoy
+### La Colaboración Humano-IA en Code Reviews
 
-**Tareas Automatizadas**:
-- Resumir cambios de PR y escribir títulos descriptivos
-- Detectar vulnerabilidades de seguridad comunes y anti-patrones
-- Hacer cumplir guidelines consistentes de formato y estilo
-- Identificar potenciales issues de performance
-- Sugerir implementaciones alternativas
+Los code reviews modernos se benefician de una división estratégica del trabajo entre herramientas de IA y reviewers humanos. Entender en qué excele cada uno ayuda a los equipos a maximizar eficiencia mientras mantienen calidad.
 
-**Soporte de Documentación**:
-- Generar descripciones comprensivas de PR
-- Crear comentarios inline para lógica compleja
-- Actualizar archivos README y documentación técnica
+**Donde Excele la IA**:
 
-### Limitaciones Actuales de IA (2025)
+*Reconocimiento de Patrones y Automatización*
+- Identificar vulnerabilidades de seguridad comunes (SQL injection, XSS, buffer overflows)
+- Detectar anti-patrones y code smells a través del codebase
+- Hacer cumplir guidelines de estilo y consistencia de formato
+- Detectar issues de performance (loops O(n²), re-renders innecesarios, memory leaks)
+- Sugerir alternativas idiomáticas basadas en mejores prácticas del lenguaje
 
-**Lo que la IA No Puede Hacer Aún**:
-- Entender dinámicas de equipo y contexto interpersonal
-- Comprender requerimientos específicos del proyecto y restricciones
-- Hacer decisiones arquitectónicas matizadas
-- Proveer mentoría y transferencia de conocimiento
-- Entender el contexto de negocio detrás de decisiones técnicas
+*Documentación y Contexto*
+- Generar resúmenes comprensivos de PR desde el historial de commits
+- Escribir borradores iniciales de documentación inline para lógica compleja
+- Actualizar archivos README y documentación de API
+- Crear mensajes de commit convencionales desde cambios de código
 
-### Construyendo Cultura de Revisión
+**Donde los Humanos Son Irreemplazables**:
 
-**Para Autores: Sé Tu Propio Primer Reviewer**
+*Pensamiento Estratégico*
+- Decisiones arquitectónicas que se alinean con metas de sistema a largo plazo
+- Entender restricciones y trade-offs específicos del proyecto
+- Evaluar si la solución aborda el problema raíz
+- Evaluar impacto en velocidad del equipo y carga de mantenimiento
 
-Antes de enviar tu PR, preguntate:
-- ¿Es el título descriptivo y claro?
-- ¿He provisto suficiente contexto en la descripción?
-- ¿Alguien no familiarizado con este cambio entendería el "por qué"?
+*Inteligencia Contextual*
+- Comprender requerimientos de negocio detrás de cambios técnicos
+- Entender dinámicas de equipo y necesidades de comunicación
+- Proveer mentoría adaptada a niveles de habilidad individuales
+- Conectar cambios con estrategia de producto más amplia
 
-**Para Reviewers: Compartí la Responsabilidad**
+*Transferencia de Conocimiento*
+- Explicar el "por qué" detrás de decisiones arquitectónicas
+- Compartir contexto histórico sobre código legacy
+- Enseñar patrones y prácticas específicos del dominio
+- Construir ownership colectivo a través de discusión
 
-Recordá: Eres tan responsable por los bugs que se escapan como lo es el autor. En lugar de pensar "el desarrollador cometió un error," pensá "¿cómo me perdí eso?"
+### Construyendo una Cultura de Revisión Sólida
+
+**Para Autores: Apropiáte de Tu Código Antes de Enviarlo**
+
+Tratáte como el primer reviewer. Antes de pedir revisión:
+
+1. **Auto-revisá el diff**: Leé cada línea como si la vieras por primera vez
+2. **Verificá la historia**: ¿Los commits fluyen lógicamente? ¿Cada uno tiene sentido independientemente?
+3. **Agregá contexto proactivamente**: Incluí capturas, diagramas o ejemplos para cambios complejos
+4. **Testeá casos edge**: No solo verifiques el happy path
+5. **Chequeá el checklist**: ¿Tests actualizados? ¿Docs al día? ¿Breaking changes señalados?
+
+**Para Reviewers: Sos Co-Autor**
+
+Cambiá de "encontrar errores" a "asegurar calidad juntos":
+
+1. **Responsabilidad compartida**: Bugs en producción son fallas de revisión, no solo de autoría
+2. **Enfocáte en impacto**: Priorizá corrección, seguridad y mantenibilidad sobre preferencias de estilo
+3. **Enseñá, no dictes**: Explicá el razonamiento detrás de las sugerencias
+4. **Reconocé buen trabajo**: Usá comentarios `praise` para reforzar patrones positivos
+5. **Sabé cuándo llevarlo offline**: Discusiones arquitectónicas complejas van en calls, no en hilos de comentarios
+
+**Acuerdos de Equipo a Establecer**:
+- Expectativas de tiempo de respuesta (ej. revisión inicial dentro de 24 horas)
+- Definición de feedback "blocking" vs "non-blocking"
+- Cuándo mergear con comentarios abiertos vs esperar resolución
+- Cómo manejar desacuerdos (paths de escalación, pair programming, etc.)
 
 ## En resumen
 

@@ -14,7 +14,7 @@ Code reviews are one of the most powerful practices in software development, yet
 
 But in real-world applications, many teams struggle with review processes that either rubber-stamp changes or get bogged down in nitpicks. All this ineffective reviewing ends up polluting what should be a collaborative learning experience, making the process harder to sustain and less valuable to the team.
 
-## Understanding Code Reviews: More Than Just Bug Catching
+## More Than Just Bug Catching
 
 At its core, a code review is **a process that software developers use to inspect each other's code and to make sure it passes a set of agreed-upon standards**. Think of it as double-checking your work before it goes live—like proofreading an important email or having someone review a document before publication.
 
@@ -66,79 +66,123 @@ Instead of one massive commit that "adds user authentication," break it down:
 // Fifth commit: Update tests and documentation
 ```
 
-### Mastering Communication
+### Mastering Communication with Conventional Comments
 
-The `suggestion` comment type is used to provide alternative approaches, while the `issue` type indicates blocking problems. Each comment type has a specific purpose and expected response.
+[Conventional Comments](https://conventionalcomments.org/) provide a standardized format for code review feedback, making communication clearer and more actionable. The format follows a simple pattern:
 
-Information flows between author and reviewer when using structured feedback. Progress moves to the next review cycle when calling `resolve`.
+```
+<label> [decorations]: <subject>
 
-```js
-// suggestion: Consider using a Map here instead of nested loops 
-// for O(n) vs O(n²) performance, especially since we expect 
-// this dataset to grow significantly.
-
-// issue: This validation needs to handle null values before 
-// the method can be safely called.
-
-// praise: This is an excellent solution to a tricky problem!
+[discussion]
 ```
 
-`resolve` is a method that concludes discussion threads. It's used to iterate through the review feedback cycle.
+**Core Labels**:
+- `praise`: Highlight something positive (encourages good practices)
+- `nitpick`: Minor issues that don't block (often non-blocking)
+- `suggestion`: Propose improvements or alternatives
+- `issue`: Problems that must be addressed before merging
+- `todo`: Small, necessary changes
+- `question`: Seek clarification or discussion
+- `thought`: Ideas that don't require action
+- `chore`: Simple tasks (formatting, renaming, etc.)
 
-### AI Enhancement Integration
+**Decorations** (optional):
+- `(non-blocking)`: Reviewer won't prevent approval
+- `(blocking)`: Must be resolved before merge
+- `(if-minor)`: Resolve if you agree, ignore if not
 
-AI integration works very similar to how middleware functions in web frameworks like Express. When AI tools are configured, they run automated checks first, then human reviewers focus on higher-level concerns while AI handles the routine tasks.
-
-You can chain different AI and human review stages using structured pipelines. If automated tools flag issues, they're handled before human review begins.
+**Examples**:
 
 ```js
-// Code Commit → AI Pre-Analysis → Automated Checks → Human Review → AI Summary → Merge
+// praise: This abstraction makes the code much more maintainable!
 
-module.exports = new ReviewPipeline()
-   .aiPreAnalysis(securityScan, performanceCheck)
-   .humanReview(architectureReview, businessLogicCheck) 
-   .aiSummary(documentationUpdate, changelogGeneration)
-   .catch(errorHandler)
-   .merge();
+// suggestion (non-blocking): Consider using a Map here instead
+// of nested loops for O(n) vs O(n²) performance, especially
+// since we expect this dataset to grow significantly.
+
+// issue (blocking): This validation needs to handle null values
+// before the method can be safely called.
+
+// question: What happens if the API returns a 429 rate limit error?
+
+// nitpick (non-blocking): Variable name could be more descriptive.
+// Consider `userAuthToken` instead of `token`.
 ```
+
+**Benefits**:
+- **Clarity**: Reviewers instantly understand comment intent and urgency
+- **Action-oriented**: Authors know exactly what requires action
+- **Reduces conflict**: Explicit labels prevent misinterpretation
+- **Better async communication**: Less back-and-forth clarification needed
 
 ## Advanced Techniques
 
-### Where AI Excels Today
+### The Human-AI Partnership in Code Reviews
 
-**Automated Tasks**:
-- Summarizing PR changes and writing descriptive titles
-- Catching common security vulnerabilities and anti-patterns
-- Enforcing consistent formatting and style guidelines
-- Identifying potential performance issues
-- Suggesting alternative implementations
+Modern code reviews benefit from a strategic division of labor between AI tools and human reviewers. Understanding what each excels at helps teams maximize efficiency while maintaining quality.
 
-**Documentation Support**:
-- Generating comprehensive PR descriptions
-- Creating inline code comments for complex logic
-- Updating README files and technical documentation
+**Where AI Excels**:
 
-### Current AI Limitations (2025)
+*Pattern Recognition & Automation*
+- Identifying common security vulnerabilities (SQL injection, XSS, buffer overflows)
+- Detecting anti-patterns and code smells across the codebase
+- Enforcing style guidelines and formatting consistency
+- Spotting performance issues (O(n²) loops, unnecessary re-renders, memory leaks)
+- Suggesting idiomatic alternatives based on language best practices
 
-**What AI Can't Do Yet**:
-- Understand team dynamics and interpersonal context
-- Grasp project-specific requirements and constraints
-- Make nuanced architectural decisions
-- Provide mentoring and knowledge transfer
-- Understand the business context behind technical decisions
+*Documentation & Context*
+- Generating comprehensive PR summaries from commit history
+- Writing initial drafts of inline documentation for complex logic
+- Updating README files and API documentation
+- Creating conventional commit messages from code changes
 
-### Building Review Culture
+**Where Humans Are Irreplaceable**:
 
-**For Authors: Be Your Own First Reviewer**
+*Strategic Thinking*
+- Architectural decisions that align with long-term system goals
+- Understanding project-specific constraints and trade-offs
+- Evaluating whether the solution addresses the root problem
+- Assessing impact on team velocity and maintenance burden
 
-Before submitting your PR, ask yourself:
-- Is the title descriptive and clear?
-- Have I provided enough context in the description?
-- Would someone unfamiliar with this change understand the "why"?
+*Contextual Intelligence*
+- Grasping business requirements behind technical changes
+- Understanding team dynamics and communication needs
+- Providing mentorship tailored to individual skill levels
+- Connecting changes to broader product strategy
 
-**For Reviewers: Share the Responsibility**
+*Knowledge Transfer*
+- Explaining the "why" behind architectural decisions
+- Sharing historical context about legacy code
+- Teaching domain-specific patterns and practices
+- Building collective ownership through discussion
 
-Remember: You're just as responsible for bugs that slip through as the author is. Instead of thinking "the developer made a mistake," think "how did I miss that?"
+### Building a Strong Review Culture
+
+**For Authors: Own Your Code Before Submission**
+
+Treat yourself as the first reviewer. Before requesting review:
+
+1. **Self-review the diff**: Read every line as if you're seeing it for the first time
+2. **Verify the story**: Do commits flow logically? Does each one make sense independently?
+3. **Add context proactively**: Include screenshots, diagrams, or examples for complex changes
+4. **Test edge cases**: Don't just verify the happy path
+5. **Check the checklist**: Tests updated? Docs current? Breaking changes flagged?
+
+**For Reviewers: You're a Co-Author**
+
+Shift from "finding mistakes" to "ensuring quality together":
+
+1. **Shared responsibility**: Bugs in production are review failures, not just authorship failures
+2. **Focus on impact**: Prioritize correctness, security, and maintainability over style preferences
+3. **Teach, don't dictate**: Explain the reasoning behind suggestions
+4. **Acknowledge good work**: Use `praise` comments to reinforce positive patterns
+5. **Know when to take it offline**: Complex architectural discussions belong in calls, not comment threads
+
+**Team Agreements to Establish**:
+- Response time expectations (e.g., initial review within 24 hours)
+- Definition of "blocking" vs "non-blocking" feedback
+- When to merge with open comments vs waiting for resolution
+- How to handle disagreements (escalation paths, pair programming, etc.)
 
 ## Wrap up
 
