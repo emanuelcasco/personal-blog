@@ -160,7 +160,7 @@ globalStyle(`${postBody} blockquote`, {
 
 // Images - Medium style with captions
 globalStyle(`${postBody} img`, {
-  maxWidth: '100%',
+  maxWidth: 'max(100%, 500px)',
   height: 'auto',
   display: 'block',
   margin: '32px auto',
@@ -196,7 +196,7 @@ globalStyle(`${postBody} th, ${postBody} td`, {
 
 globalStyle(`${postBody} th`, {
   fontWeight: 600,
-  backgroundColor: '#f9f9f9',
+  backgroundColor: 'inherit',
 })
 
 // Horizontal rules
