@@ -1,165 +1,241 @@
 ---
-title: 'Git Worktrees: Guía para Desarrollo Paralelo'
-excerpt: 'Aprendé cómo Git worktrees puede revolucionar tu flujo de desarrollo habilitando desarrollo paralelo de branches, eliminando el overhead de cambio de contexto, y haciendo tu experiencia con Git más eficiente.'
+title: 'Git Worktrees: Guía para desarrollo en paralelo'
+excerpt: 'Aprende cómo Git worktrees puede revolucionar tu flujo de desarrollo permitiendo el trabajo en ramas paralelas, eliminando la fricción del cambio de contexto y haciendo tu experiencia con Git más eficiente.'
 coverImage: '/assets/blog/git-worktrees-guide/cover.png'
 date: '2025-03-03T00:00:00Z'
-tags: [git, herramientas de desarrollo, optimización de workflow, control de versiones, productividad]
+tags:
+  [git, herramientas de desarrollo, optimización de flujo, control de versiones, productividad]
 ---
 
-## Introducción
+## Git Worktrees: branching limpio y eficiente sin el desorden
 
-Escribí este post para compartir mi experiencia con **Git worktrees**, una de las características más poderosas pero subutilizadas en los flujos de desarrollo modernos. Con herramientas como Claude Code poniéndolos en el centro de atención, es hora de entender por qué los worktrees se están volviendo esenciales para el desarrollo eficiente.
+**TL;DR**
 
-La gran ventaja de Git worktrees es que podés enfocarte en construir features sin preocuparte por el overhead de cambio de branch o perder contexto. **Podés trabajar en múltiples branches simultáneamente, cada uno en su propio directorio**.
-
-Pero en aplicaciones reales, los desarrolladores enfrentan escenarios frustrantes como tener que hacer stash de cambios sin commitear solo para checkear otro branch, lidiar con build artifacts cuando cambiás de contexto, o perder tu lugar cuando saltás entre features. Todo este cambio de contexto termina contaminando el flujo de desarrollo puro, volviendo el proceso más difícil de mantener y menos productivo.
-
-Originalmente descubrí este enfoque mientras trabajaba en proyectos complejos que requerían cambios frecuentes de branch, y las ganancias de productividad fueron inmediatamente aparentes.
-
-## Solución
-
-Las herramientas de desarrollo modernas han solucionado desafíos de workflow similares usando patrones de procesamiento paralelo. Luego de experimentar el dolor de los workflows tradicionales de Git, investigué varios enfoques para el manejo de branches.
-
-Desafortunadamente, la mayoría de los desarrolladores se quedan con workflows de un solo worktree que no aprovechan el potencial completo de Git, por lo que decidí implementar un enfoque comprensivo basado en worktrees.
-
-**Así es como mi workflow moderno de Git nació.**
-
-Links útiles:
-- [Documentación de Git: git-worktree](https://git-scm.com/docs/git-worktree)
-- [Libro Pro Git: Git Avanzado](https://git-scm.com/book/en/v2)
-
-## ¿Cómo funciona?
+- Usa Git Worktrees cuando quieras tener múltiples ramas activas al mismo tiempo sin estar cambiando constantemente.
+- Se _sienten_ como tener copias de tu carpeta de proyecto, pero son mucho más eficientes.
+- Te ayudan a evitar el infierno del stash, aceleran el cambio de contexto y mantienen tu repo ordenado.
 
 ### ¿Qué son los Git Worktrees?
 
-Los Git worktrees te permiten tener múltiples directorios de trabajo asociados con un solo repositorio Git. En lugar de constantemente cambiar branches y lidiar con cambios sin commitear, podés hacer checkout de diferentes branches en directorios separados simultáneamente.
+Un Git worktree es esencialmente otro directorio de trabajo vinculado al mismo repositorio. Te permite hacer checkout de diferentes ramas en carpetas separadas, compartiendo los mismos datos subyacentes de Git.
 
-Pensalo de esta manera: tradicionalmente, tenés un directorio de trabajo por repositorio. Con worktrees, podés tener múltiples directorios de trabajo, cada uno con diferentes branches checkeados, todos compartiendo la misma historia y objetos de Git.
+Podrías pensar "¿No es eso simplemente copiar mi carpeta de proyecto y trabajar ahí?" — bueno, **sí y no**:
 
-```bash
-# Crear un worktree para un branch existente
-git worktree add ../feature-auth feature/authentication
+| Como "copiar + pegar directorio del proyecto"                                   | Lo que worktrees _realmente_ hacen                                                                                              |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Carpeta separada por rama                                                        | Carpeta separada por rama                                                                                                       |
+| Probablemente duplicar todos los archivos, historial, metadata de Git           | **Comparten el mismo historial `.git` y base de datos de objetos**                                                             |
+| Riesgo de remotos divergentes, conflictos si intentas tratarlos como repos diferentes | Se mantienen sincronizados respecto a commits, tracking de remotos; flujo de trabajo limpio y seguro administrado por Git mismo |
+| Espacio en disco desperdiciado si hay muchas ramas                              | Mucho menos overhead — solo nuevos directorios de trabajo y metadata de checkout; la mayoría de los datos (objetos, historial) se reutilizan |
 
-# Crear un worktree con un nuevo branch
-git worktree add ../hotfix-login -b hotfix/login-bug
+Entonces, aunque los worktrees se _sienten_ como múltiples copias, son más como tener múltiples "vistas" o "checkouts" del mismo repo sin las ineficiencias.
 
-# Crear un worktree desde un branch remoto
-git worktree add ../feature-new origin/feature/new-feature
-```
+### Por qué usarlos
 
-### Workflow de Desarrollo Paralelo
+- Trabajar en dos (o más) ramas a la vez **sin hacer stash**.
+- Más fácil comparar trabajo en funcionalidades en paralelo (digamos, bugfix + feature + preparación de release).
+- Evitar el "solo un commit más en la rama A" antes de cambiar a la rama B, y luego olvidar qué cambiaste.
+- Builds/tests más limpios: aislar build de release o trabajo de hotfix en una carpeta separada.
+- Mejor rendimiento y uso de disco que tener clones completos por todos lados.
 
-El comando `worktree add` es usado para crear diferentes contextos de desarrollo como "entornos aislados". Cada worktree mantiene su propio estado de trabajo mientras comparte el mismo repositorio Git.
-
-La información fluye entre worktrees cuando hacés push de commits o actualizás branches. El progreso se mueve a diferentes contextos cuando navegás entre directorios.
-
-```bash
-# Desarrollo principal en tu worktree primario
-cd ~/projects/myapp
-git checkout main
-
-# Crear un worktree para tu feature
-git worktree add ../myapp-feature -b feature/user-dashboard
-
-# Trabajar en el feature
-cd ../myapp-feature
-# ... desarrollar feature ...
-
-# Mientras tanto, llega un reporte de bug urgente
-# Crear otro worktree para el hotfix
-cd ~/projects/myapp
-git worktree add ../myapp-hotfix -b hotfix/critical-bug
-
-# Arreglar el bug en aislamiento
-cd ../myapp-hotfix
-# ... arreglar bug y hacer push ...
-
-# Volver al desarrollo del feature sin perder contexto
-cd ../myapp-feature
-# Tu trabajo está exactamente como lo dejaste
-```
-
-`git worktree list` es un método que muestra todos los worktrees activos. Es usado para trackear tus entornos de desarrollo paralelo.
-
-### Manejo Avanzado de Worktrees
-
-La limpieza de worktrees funciona muy similar a como funciona la gestión de recursos en administración de sistemas. Cuando los worktrees ya no son necesarios, los removés apropiadamente para mantener un entorno de desarrollo limpio.
-
-Podés manejar múltiples ciclos de vida de worktrees usando comandos estructurados. Si los directorios son eliminados manualmente, el tracking de Git necesita ser limpiado.
+### Cómo usar worktrees
 
 ```bash
-# Listar worktrees activos
-git worktree list
+# Crear un nuevo worktree para una nueva rama
+git worktree add ../feature/my-cool-thing feature/my-cool-thing
 
-# Remover worktree apropiadamente
-git worktree remove ../feature-auth
+# Crear un worktree para una rama existente
+git worktree add ../bugfix/urgent bugfix/urgent
 
-# Limpiar worktrees eliminados
-git worktree prune
+# Verificar el estado
+cd ../feature/my-cool-thing
+git status
 
-# Mover worktree a nueva ubicación
-git worktree move ../old-path ../new-path
+# Remover cuando termines
+git worktree remove ../bugfix/urgent
 ```
 
-## Técnicas Avanzadas
+### Mi script auxiliar: `gwts`
 
-### Workflow de Repositorio Bare
+Usar comandos `git worktree` raw está bien, pero me encontré repitiendo los mismos pasos: crear la rama, configurar la carpeta, copiar configs locales como `.env`, y asegurarme de que las dependencias estén listas.
 
-Para la experiencia definitiva de worktree, empezá con un repositorio bare:
+Entonces escribí un pequeño helper: **`gwts`**.
+
+Lo que hace:
+
+1. Crea una nueva rama con el nombre que le pases.
+2. Crea un worktree con un nombre de directorio en el formato `<nombrerepo>-<nombrerama>`.
+3. Copia `.env`, `node_modules` y `.venv` de tu repo principal usando `rsync` para que el nuevo worktree arranque instantáneamente.
+
+Ejemplo:
 
 ```bash
-# Clonar como repositorio bare
-git clone --bare git@github.com:user/repo.git project.git
-cd project.git
-
-# Crear worktrees para diferentes propósitos
-git worktree add ../main main
-git worktree add ../develop develop
-git worktree add ../feature-a feature/feature-a
+gwts feature/new-dashboard
 ```
 
-Este enfoque trata todos los branches igualmente, sin directorio de trabajo "primario".
+Esto va a:
 
-### Integración con Herramientas Modernas
+- Crear la rama `feature/new-dashboard`.
+- Crear una carpeta `myrepo-feature-new-dashboard`.
+- Copiar `.env`, `node_modules`, `.venv`.
+- Dejarte directo en un ambiente listo para trabajar.
 
-**Claude Code y Worktrees**:
-- Experimentos aislados para testear cambios de código generados por IA
-- Exploración segura de diferentes enfoques sin afectar el trabajo principal
-- Comparaciones rápidas entre sugerencias de IA e implementación actual
-- Desarrollo paralelo de múltiples features simultáneamente
+Eso significa no reinstalar dependencias, no configurar configs locales, solo empezar a codear.
 
-**Soporte de IDE**:
-- Extensiones de VS Code como "Git Worktrees" proveen manejo con GUI
-- Los IDEs de JetBrains tienen soporte built-in de worktree en versiones recientes
-- Plugins de Vim/Neovim para manejo y navegación de worktrees
+```bash
+#!/usr/bin/env bash
 
-### Mejores Prácticas
+set -euo pipefail
 
-**Organización de Directorios**:
+# git-wta: Create a worktree and copy .env files and node_modules via rsync
+# Usage:
+#   git wta <new-branch> [start-point]
+# or run directly if on PATH:
+#   git-wta <new-branch> [start-point]
+
+err() { printf "Error: %s\n" "$*" >&2; }
+
+need_cmd() {
+  command -v "$1" >/dev/null 2>&1 || { err "Missing required command: $1"; exit 127; }
+}
+
+need_cmd git
+need_cmd rsync
+need_cmd find
+
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  err "This command must be run inside a Git repository."
+  exit 1
+fi
+
+if [[ ${1:-} == "" ]]; then
+  echo "Usage: git wta <new-branch> [start-point]" >&2
+  exit 2
+fi
+
+branch="$1"
+start_point="${2:-}"
+
+repo_root="$(git rev-parse --show-toplevel)"
+root_name="$(basename "$repo_root")"
+parent_dir="$(dirname "$repo_root")"
+
+# Destination follows rule: ../<root_dir_name><branch>
+dest_dir="$parent_dir/${root_name}-${branch}"
+
+if [[ -e "$dest_dir" ]]; then
+  err "Destination already exists: $dest_dir"
+  exit 1
+fi
+
+echo "Preparing worktree at: $dest_dir (branch: $branch)"
+
+# Prune any stale worktree registrations first (safe, no-op if none)
+git worktree prune >/dev/null 2>&1 || true
+
+# If current worktree is on the target branch, switch away (a branch
+# can be checked out in only one worktree at a time)
+current_branch="$(git rev-parse --abbrev-ref HEAD)"
+if [[ "$current_branch" == "$branch" ]]; then
+  default_base="$(git symbolic-ref -q --short refs/remotes/origin/HEAD 2>/dev/null || true)"
+  default_base="${default_base#origin/}"
+  base_ref="${default_base:-main}"
+  git switch "$base_ref" 2>/dev/null \
+    || git switch -c "$base_ref" --track "origin/$base_ref" 2>/dev/null \
+    || git switch --detach
+fi
+
+# If the branch is already checked out in another active worktree, abort
+if git worktree list --porcelain | awk '/^branch /{print $2}' | grep -qx "refs/heads/$branch"; then
+  err "Branch '$branch' is already checked out in another worktree."
+  exit 1
+fi
+
+# Decide how to add the worktree: use existing local branch, or create it
+if git show-ref --verify --quiet "refs/heads/$branch"; then
+  # Branch exists locally; just attach it to a new worktree
+  git worktree add "$dest_dir" "$branch"
+else
+  # Branch does not exist locally; pick a sensible start point
+  track_flag=""
+  if [[ -n "$start_point" ]]; then
+    sp="$start_point"
+  else
+    # Optionally fetch to ensure remotes are up to date
+    git fetch --all --prune --quiet || true
+    if git show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+      sp="origin/$branch"
+      track_flag="--track"
+    else
+      sp="HEAD"
+    fi
+  fi
+
+  git worktree add -b "$branch" ${track_flag:+$track_flag} "$dest_dir" "$sp"
+fi
+
+echo "Copying .env files..."
+# Copy all files specifically named ".env" (skip .git and node_modules trees while searching)
+while IFS= read -r -d '' env_path; do
+  rel="${env_path#"$repo_root"/}"
+  target="$dest_dir/$rel"
+  mkdir -p "$(dirname "$target")"
+  rsync -a "$env_path" "$target"
+  echo "  .env -> $rel"
+done < <(find "$repo_root" \
+          -type d -name .git -prune -o \
+          -path '*/node_modules/*' -prune -o \
+          -type f -name .env -print0)
+
+echo "Copying node_modules directories (this may take a while)..."
+# Copy every top-level directory named node_modules (any depth), no recursion into them during discovery
+while IFS= read -r -d '' nm_path; do
+  rel="${nm_path#"$repo_root"/}"
+  target="$dest_dir/$rel"
+  mkdir -p "$target"
+  # Trailing slashes ensure rsync copies directory contents into target directory
+  rsync -a "$nm_path/" "$target/"
+  echo "  node_modules -> $rel"
+done < <(find "$repo_root" -type d -name node_modules -prune -print0)
+
+echo "Done. New worktree: $dest_dir"
+echo "Next: cd \"$dest_dir\""
 ```
-projects/
-├── myapp.git/          # Repositorio bare
-├── myapp-main/         # Worktree del branch main
-├── myapp-develop/      # Branch de desarrollo
-├── myapp-feature-x/    # Branches de features
-└── myapp-hotfix-y/     # Hotfixes
-```
 
-**Convenciones de Nombres**:
-- Usar prefijos consistentes: `project-branch-name`
-- Incluir números de issue: `myapp-issue-123`
-- Indicar propósito: `myapp-experiment-new-api`
+### Casos de uso
 
-## En resumen
+Entonces, ¿cuándo hace realmente la diferencia esto?
 
-Los Git worktrees representan un cambio de paradigma en cómo pensamos sobre el manejo de repositorios. En lugar de luchar con cambios de branch y pérdida de contexto, podemos abrazar workflows de desarrollo paralelo que coinciden con cómo realmente trabajamos.
+- **Revisiones de Pull Request**
+  Crea la rama del PR en su propio worktree, prueba los cambios, ejecuta builds — todo sin dejar atrás tu rama de trabajo actual.
 
-El workflow delineado acá está evolucionando continuamente mientras herramientas como Claude Code promueven el uso de worktrees, y tengo ideas para mejorar la adopción de desarrolladores.
+- **Hotfixes bajo presión**
+  Llega un issue de producción, pero no quieres hacer stash o ensuciar tu rama de feature. Solo abre un worktree de hotfix, arregla, prueba, pushea. Tus cambios en curso permanecen intactos.
 
-Sin embargo, si tenés alguna sugerencia sobre implementar worktrees en tu proceso de desarrollo, ¡por favor no dudes en ponerte en contacto conmigo y hacérmelo saber!
+- **Experimentar con múltiples soluciones**
+  A veces estás explorando diferentes enfoques (ej. ajustes de algoritmos, estrategias de refactor, o comportamientos de agentes de IA). Los worktrees te permiten correr experimentos paralelos lado a lado sin tropezarte entre ellos. Esto es especialmente útil en la actual "era de los agentes", donde probar múltiples enfoques rápidamente es la norma.
 
-**Recordá: El futuro de los workflows de Git es paralelo, no secuencial. Los worktrees hacen ese futuro disponible hoy.**
+- **Preparación y testing de release**
+  Construye desde tu rama de release en un worktree, continúa desarrollando features en otro. Sin pérdida de contexto.
+
+### Diferencias y trampas a tener en cuenta
+
+- **Objetos Git compartidos**: los worktrees comparten la misma base de datos de objetos `.git`, por lo que cambios de archivos grandes se almacenan solo una vez.
+- **Reglas de checkout de rama**: no puedes hacer checkout de la misma rama en dos worktrees. Si lo intentas, Git se quejará.
+- **Limpieza necesaria**: cuando un worktree ya no se usa, deberías removerlo. De lo contrario, acumularás carpetas, cabos sueltos.
+- **Tracking de remotos**: hacer push/pull funciona igual, pero debes estar consciente de en qué worktree estás. Herramientas/scripts que referencian rutas deben ajustarse.
+
+### Conclusión
+
+Git Worktrees te dan gran parte del beneficio de tener múltiples copias de tu directorio de proyecto — múltiples ramas trabajadas en paralelo — pero sin la duplicación, desorden y overhead.
+
+Y si los combinas con un helper como `gwts`, eliminas aún más fricción: creando worktrees que están listos para usar en segundos.
+
+Pruébalo para tu próxima revisión de PR, hotfix, o experimento — una vez que veas lo limpio que se siente el flujo de trabajo, no volverás atrás.
+
+**Recuerda: El futuro de los flujos de trabajo de Git es paralelo, no secuencial. Los worktrees hacen ese futuro disponible hoy.**
 
 Links:
+
 - [Documentación de Git Worktrees](https://git-scm.com/docs/git-worktree)
 - [Libro Pro Git](https://git-scm.com/book)
