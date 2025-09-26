@@ -18,11 +18,9 @@ You know the scenario. You open your AI chat, carefully reconstruct that perfect
 
 Let's start with the most basic problem: **you keep asking your AI to do the same types of tasks**. Code reviews, implementation planning, debugging sessions. Same structure, different content.
 
-The first step? Stop rewriting everything from scratch.
+The first step? Stop rewriting everything from scratch, **start by creating a simple `tasks` folder with markdown files**:
 
-I started by creating a simple `tasks` folder with markdown files:
-
-```
+```plain
 ~/.ai/
 └── tasks/
     ├── create-implementation-plan-task.md
@@ -30,11 +28,9 @@ I started by creating a simple `tasks` folder with markdown files:
     └── code-review-task.md
 ```
 
-Each file became my template:
+Each file became my template: `create-implementation-plan-task.md`
 
-**create-implementation-plan-task.md:**
-
-`````markdown
+```markdown
 ---
 title: Create Implementation Plan for Story
 type: task
@@ -128,19 +124,15 @@ If template specifies a checklist:
 - [ ] **Clean Output**: No [[LLM:]] markup, no preamble, complete content, date stamped
 - [ ] **Success Criteria**: Clear, measurable completion outcomes defined
 - [ ] **Pair Programming Ready**: Instructions clear enough for development partner
-`````
+```
 
 Suddenly, instead of reconstructing my prompts from memory, I'd just reference the file. Copy, paste, customize. Simple, but it worked.
-
-**The first lesson: Don't overthink it, start with basics.**
 
 ### Adding context, enter the Persona Files
 
 The task templates solved part of the problem, but I noticed something else. My AI interactions got drastically better when I gave the model a clear personality and expertise area.
 
-"Act like a senior software engineer" worked, but "Act like Sarah, a senior backend engineer with 8 years of experience in distributed systems, known for thorough code reviews and emphasis on performance optimization" worked _way_ better.
-
-So I created a `personas` folder:
+"Act like a senior software engineer" worked, but "Act like Sarah, a senior backend engineer with 8 years of experience in distributed systems, known for thorough code reviews and emphasis on performance optimization" worked _way_ better. **So I created a `personas` folder**:
 
 ```plain
 ~/.ai/
@@ -151,7 +143,7 @@ So I created a `personas` folder:
         └── ux-expert.yml
 ```
 
-**architect.yml:**
+**dev.yml:**
 
 ```yaml
 activation-instructions:
@@ -214,9 +206,7 @@ dependencies:
       Use when sharing a merge request (mr) update in Slack. Keep the message concise and plain-text, and always include the MR title, link, and key changes. If it's a complex MR, append a "Review Focus" section with 1 to 3 areas to scrutinize.
 ```
 
-Now my workflow became: grab a persona file, grab a task file, combine them in my prompt. The AI responses became more consistent, more focused, and frankly, more useful. Check how the Persona file links to tasks, this way I can re-use the prompts/instructions I've created already.
-
-**The second lesson: Consistency comes from systematic personas, not ad-hoc instructions.**
+Now my workflow became: grab a persona file and a task file, combine them in my prompt. The AI responses became more consistent, more focused, and frankly, more useful. Check how the Persona file links to tasks, this way I can re-use the prompts/instructions I've created already.
 
 ## DRY. Encapsulate implementation details.
 
@@ -424,8 +414,6 @@ claude-as architect code review <LINK PULL REQUEST>
 
 Now as soon as I startup Claude, it has already load the necessaery context. Furthermore, this approach of appending a prompt to the system prompt worked much better than i expected so I used the same approach to load the memory files (see `claude --append-system-prompt "$system_prompt"`).
 
-**The third lesson: Create scripts to automate repetitive tasks outside the agent.**
-
 ## The Subagent Revelation
 
 As I used these workflows more, I noticed a problem. Long AI conversations would get... messy. My carefully crafted senior developer persona would get confused after 50 messages about different topics.
@@ -451,8 +439,6 @@ Main session: "I need to analyze this complex feature implementation"
 Each works independently, reports back findings
 ```
 
-**The fifth lesson: Specialization and context isolation make AI interactions more reliable and focused.**
-
 ## Parallel Processing: The Game Changer
 
 Here's where things got really interesting. If I could spawn multiple subagents, why not run them in parallel?
@@ -467,7 +453,7 @@ All working simultaneously, each with their own expertise, reporting back when d
 
 This wasn't just automation anymore—this was AI team coordination.
 
-## The Final Evolution: Workflow Orchestration
+### Workflow Orchestration
 
 Once I had personas, tasks, slash commands, and parallel subagents working, the logical next step was obvious: orchestrate entire workflows.
 

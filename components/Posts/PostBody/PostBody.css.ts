@@ -3,8 +3,8 @@ import { globalStyle, style } from '@vanilla-extract/css'
 import { tokens } from '@styles/theme'
 
 const postBody = style({
-  fontSize: '21px',
-  lineHeight: '1rem',
+  fontSize: '16px',
+  lineHeight: '1.4',
   color: tokens.colors.neutral,
   fontFamily: tokens.fonts.type.body,
   letterSpacing: '-0.003em',
@@ -13,50 +13,50 @@ const postBody = style({
 
 // Typography - Medium style headings
 globalStyle(`${postBody} h1`, {
-  fontSize: '40px',
-  lineHeight: '2.2rem',
+  fontSize: '2.5rem',
+  lineHeight: '1.4',
   fontWeight: 700,
   fontFamily: tokens.fonts.type.heading,
-  marginTop: '48px',
-  marginBottom: '16px',
+  marginTop: '2rem',
+  marginBottom: '1.2rem',
   letterSpacing: '-0.022em',
 })
 
 globalStyle(`${postBody} h2`, {
-  fontSize: '32px',
-  lineHeight: '1.2',
+  fontSize: '2rem',
+  lineHeight: '1.4',
   fontWeight: 600,
   fontFamily: tokens.fonts.type.heading,
-  marginTop: '40px',
-  marginBottom: '16px',
+  marginTop: '1.2rem',
+  marginBottom: '1.2rem',
   letterSpacing: '-0.018em',
 })
 
 globalStyle(`${postBody} h3`, {
-  fontSize: '24px',
-  lineHeight: '1.3',
+  fontSize: '1.5rem',
+  lineHeight: '1.4',
   fontWeight: 600,
   fontFamily: tokens.fonts.type.heading,
-  marginTop: '32px',
-  marginBottom: '12px',
+  marginTop: '1.2rem',
+  marginBottom: '1.2rem',
   letterSpacing: '-0.014em',
 })
 
 globalStyle(`${postBody} h4`, {
-  fontSize: '21px',
+  fontSize: '1.25rem',
   lineHeight: '1.4',
   fontWeight: 600,
   fontFamily: tokens.fonts.type.heading,
-  marginTop: '28px',
-  marginBottom: '8px',
+  marginTop: '1.2rem',
+  marginBottom: '1.2rem',
   letterSpacing: '-0.003em',
 })
 
 // Paragraphs - Medium's signature spacing
 globalStyle(`${postBody} p`, {
-  marginBottom: '24px',
-  fontSize: '21px',
-  lineHeight: '1.58',
+  marginBottom: '1.1rem',
+  fontSize: '1rem',
+  lineHeight: '1.4',
   letterSpacing: '-0.003em',
   textAlign: 'left',
   overflowWrap: 'break-word',
@@ -102,9 +102,8 @@ globalStyle(
 
 // Code styling - Medium-inspired
 globalStyle(`${postBody} code`, {
-  color: '#eb5757',
   borderRadius: '3px',
-  fontSize: '18px',
+  fontSize: '.8rem',
   padding: '2px 6px',
   fontFamily: tokens.fonts.type.monospace,
   fontWeight: 500,
