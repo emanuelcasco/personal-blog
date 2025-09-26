@@ -78,8 +78,8 @@ globalStyle(`${postBody} ol`, {
 })
 
 globalStyle(`${postBody} li`, {
-  fontSize: '21px',
-  lineHeight: '1.58',
+  fontSize: '1rem',
+  lineHeight: '1.4',
   marginBottom: '8px',
   letterSpacing: '-0.003em',
   paddingLeft: '4px',
