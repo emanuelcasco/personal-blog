@@ -8,12 +8,13 @@ const postBody = style({
   color: tokens.colors.neutral,
   fontFamily: tokens.fonts.type.body,
   letterSpacing: '-0.003em',
+  width: '100%',
 })
 
 // Typography - Medium style headings
 globalStyle(`${postBody} h1`, {
   fontSize: '40px',
-  lineHeight: '1rem',
+  lineHeight: '2.2rem',
   fontWeight: 700,
   fontFamily: tokens.fonts.type.heading,
   marginTop: '48px',
@@ -124,7 +125,8 @@ globalStyle(`${postBody} pre code`, {
   fontSize: '16px',
   lineHeight: '1.45',
   fontWeight: 400,
-  maxWidth: 'max(100%, 500px)',
+  whiteSpace: 'pre',
+  overflow: 'visible',
 })
 
 // Links - Medium style
@@ -211,32 +213,6 @@ globalStyle(`${postBody} strong`, {
 
 globalStyle(`${postBody} em`, {
   fontStyle: 'italic',
-})
-
-// Special formatting for emoji lists (like your LoRaWAN post)
-globalStyle(`${postBody} pre:has(code)`, {
-  backgroundColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-  color: 'white',
-  borderLeft: '4px solid #f59e0b',
-})
-
-// Dark mode adjustments
-globalStyle(`${postBody}[data-theme="dark"] code`, {
-  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-  color: '#ff6b6b',
-})
-
-globalStyle(`${postBody}[data-theme="dark"] pre`, {
-  backgroundColor: '#2d3748',
-  borderColor: '#4a5568',
-})
-
-globalStyle(`${postBody}[data-theme="dark"] pre code`, {
-  color: '#e2e8f0',
-})
-
-globalStyle(`${postBody}[data-theme="dark"] blockquote`, {
-  borderLeftColor: 'rgba(255, 255, 255, 0.68)',
 })
 
 export default {

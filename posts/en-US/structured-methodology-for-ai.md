@@ -1,7 +1,7 @@
 ---
 title: 'Structured methodology for AI-assisted development'
 excerpt: 'Buildup a system to make your AI workflow more efficient and consistent.'
-coverImage: '/assets/blog/power-up-your-ai-workflow/cover.jpg'
+coverImage: '/assets/blog/structured-methodology-for-ai/cover.jpg'
 date: '2025-09-07T00:00:00Z'
 tags: [ai, workflow, automation, development]
 ---

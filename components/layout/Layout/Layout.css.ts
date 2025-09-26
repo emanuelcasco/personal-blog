@@ -17,7 +17,7 @@ const main = style({
   alignSelf: 'center',
   justifySelf: 'stretch',
   width: '100%',
-  maxWidth: '750px',
+  maxWidth: 'min(1200px, 90vw)',
   paddingBlock: tokens.space.sm,
   ...responsiveStyle({
     'for-mobile': {

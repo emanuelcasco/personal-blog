@@ -1,7 +1,7 @@
 ---
 title: 'Metodología estructurada para desarrollo asistido por IA'
 excerpt: 'Construí un sistema para hacer tu flujo de trabajo con IA más eficiente y consistente.'
-coverImage: '/assets/blog/power-up-your-ai-workflow/cover.jpg'
+coverImage: '/assets/blog/structured-methodology-for-ai/cover.jpg'
 date: '2025-09-07T00:00:00Z'
 tags: [ia, flujo de trabajo, automatización, desarrollo]
 ---
