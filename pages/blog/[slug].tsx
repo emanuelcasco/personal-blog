@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRef } from 'react'
 
 import PostBody from '@components/Posts/PostBody'
 import PostHeader from '@components/Posts/PostHeader'
 import StackContainer from '@components/UI/Containers/StackContainer'
 import Heading from '@components/UI/Heading'
+import ScrollProgressIndicator from '@components/UI/ScrollProgressIndicator'
 import { Post } from '@entities'
 import { i18nApply, I18nPage, i18nPageContext } from '@i18n'
 import { markdownToHtml } from '@services/markdown.service'
@@ -20,10 +22,9 @@ type BlogPostPageStatic = I18nPage<{
 
 const BlogPostPage: BlogPostPageStatic = ({ post }) => {
   const router = useRouter()
+  const bodyRef = useRef<HTMLDivElement | null>(null)
 
-  if (!router.isFallback && !post?.slug) {
-    return <>Error</>
-  }
+  if (!router.isFallback && !post?.slug) return <>Error</>
   return (
     <>
       <Head>
@@ -106,12 +107,12 @@ const BlogPostPage: BlogPostPageStatic = ({ post }) => {
         {router.isFallback ? (
           <Heading type="h1">Loading...</Heading>
         ) : (
-          <>
-            <PostHeader post={post} />
-            <PostBody content={post.content} />
-            {/* <PostAuthor /> */}
-          </>
+          <PostHeader post={post} />
         )}
+        {!router.isFallback && (
+          <PostBody ref={bodyRef} content={post.content} />
+        )}
+        <ScrollProgressIndicator showOnRef={bodyRef} />
       </StackContainer>
     </>
   )

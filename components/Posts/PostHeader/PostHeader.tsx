@@ -6,13 +6,13 @@ import { Post } from '@entities'
 
 import styles from './PostHeader.css'
 
-type PostHeader = {
+type PostHeaderProps = {
   post: Post
 }
 
-const PostHeader = ({ post }: PostHeader) => {
+function PostHeader({ post }: PostHeaderProps) {
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.row}>
         <BackButton />
         <PostTime date={post.date} readTime={post.readTime} />
@@ -20,8 +20,8 @@ const PostHeader = ({ post }: PostHeader) => {
       <Heading type="h1" style={{ textAlign: 'center' }}>
         {post.title}
       </Heading>
-      <PostImage post={post} size={'large'} />
-    </>
+      <PostImage post={post} size="large" />
+    </div>
   )
 }
 
