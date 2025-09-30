@@ -8,13 +8,16 @@ import remarkHeadingId from 'remark-heading-id'
 
 export async function markdownToHtml(markdown: string) {
   if (!markdown) return ''
-  const processedContent = await remark()
+
+  const processor = remark()
     .use(remarkSlug)
     .use(remarkHeadingId)
     .use(remarkHTML, { sanitize: false })
     .use(remarkPrism)
     .use(remarkGFM)
     .use(remarkGithubBlockquote)
-    .process(markdown)
+
+  const processedContent = await processor.process(markdown)
+
   return processedContent.toString()
 }
