@@ -11,6 +11,22 @@ const postBody = style({
   width: '100%',
 })
 
+const headingAnchor = style({
+  position: 'absolute',
+  left: '-1.5rem',
+  color: 'rgba(0, 0, 0, 0.3)',
+  textDecoration: 'none',
+  fontSize: '0.85em',
+  fontWeight: 400,
+  opacity: 0,
+  transition: 'opacity 0.2s ease, color 0.2s ease',
+  cursor: 'pointer',
+  ':hover': {
+    color: tokens.colors.primary,
+    textDecoration: 'none',
+  },
+})
+
 // Typography - Medium style headings
 globalStyle(`${postBody} h1`, {
   fontSize: '2.5rem',
@@ -30,6 +46,11 @@ globalStyle(`${postBody} h2`, {
   marginTop: '1.2rem',
   marginBottom: '1.2rem',
   letterSpacing: '-0.018em',
+  position: 'relative',
+})
+
+globalStyle(`${postBody} h2:hover .${headingAnchor}`, {
+  opacity: 1,
 })
 
 globalStyle(`${postBody} h3`, {
@@ -40,6 +61,11 @@ globalStyle(`${postBody} h3`, {
   marginTop: '1.2rem',
   marginBottom: '1.2rem',
   letterSpacing: '-0.014em',
+  position: 'relative',
+})
+
+globalStyle(`${postBody} h3:hover .${headingAnchor}`, {
+  opacity: 1,
 })
 
 globalStyle(`${postBody} h4`, {
@@ -216,4 +242,5 @@ globalStyle(`${postBody} em`, {
 
 export default {
   postBody,
+  headingAnchor,
 }
