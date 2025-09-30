@@ -136,6 +136,29 @@ globalStyle(`${postBody} code`, {
   letterSpacing: '0',
 })
 
+// Code styling - Medium-inspired
+globalStyle(`${postBody} pre:has(code)`, {
+  maxHeight: '400px !important',
+  display: 'block',
+  width: '100%',
+})
+
+globalStyle(`${postBody} pre:has(code)::-webkit-scrollbar`, {
+  width: '4px',
+  height: '4px',
+  opacity: '1',
+})
+
+globalStyle(`${postBody} pre:has(code)::-webkit-scrollbar-thumb`, {
+  backgroundColor: tokens.colors.secondary,
+  borderRadius: '4px',
+})
+
+globalStyle(`${postBody} pre:has(code)::-webkit-scrollbar-track`, {
+  backgroundColor: tokens.colors.neutral,
+  borderRadius: '4px',
+})
+
 globalStyle(`${postBody} pre`, {
   borderRadius: '6px',
   padding: '24px',
@@ -150,8 +173,9 @@ globalStyle(`${postBody} pre code`, {
   fontSize: '16px',
   lineHeight: '1.45',
   fontWeight: 400,
-  whiteSpace: 'pre',
-  overflow: 'visible',
+  whiteSpace: 'pre-wrap',
+  wordBreak: 'break-word',
+  overflow: 'auto',
 })
 
 // Links - Medium style
